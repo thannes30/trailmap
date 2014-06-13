@@ -9,3 +9,4 @@
 
 <h4>Our web app is built using Ruby on Rails and Google Maps API.</h4>
 <h4>Visit us at <a href="http://trailmap.herokuapp.com/">trailmap.herokuapp.com</a></h4>
+<h4>Find public our Trello board at <a href="https://trello.com/b/8qYeGQpQ/trailmap">trello.com/b/8qYeGQpQ/trailmap</a></h4>
