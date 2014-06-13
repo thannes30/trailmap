@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   post '/users' => 'users#create', as: 'users'
 
   get '/profile' => 'users#profile', as: 'profile'
+  get '/trails/new/:user_id' => 'trails#new'
 
 
 end
