@@ -29,11 +29,11 @@ function initialize() {
   google.maps.event.addListener(map, 'click', addLatLng);
 
 
-  $('.create-trail-button').on('click', function(){
-
-  var newTrail = makeTrail()
-  var currentUserId = $('.current-user-id').val()
-  console.log(newTrail)
+  $('.create-trail-form').on('submit', function(e){
+  e.preventDefault();
+  var newTrail = makeTrail();
+  var currentUserId = $('.current-user-id').val();
+  console.log(newTrail);
   $.ajax({
     url: '/trails',
     method: 'post',
@@ -43,9 +43,18 @@ function initialize() {
       console.log(data)
       // window.location.href='/trails/' + currentUserId
     }
-  })
-})
+  });
+});
 }
+
+// $('form.create-trail').on('submit', function(e) {
+//   var trailMarkers = makeTrail();
+//   $.each(trailMarkers.coords, function(index, coordinates) {
+//     var hiddenField = // create hidden field;
+//     // add value to hidden field
+//     // put hidden field into form
+//   })
+// });
 
 /**
  * Handles click events on a map, and adds a new point to the Polyline.
@@ -72,7 +81,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 
 function makeTrail(){
   var object = {}
-  object['trail'] = $('.create-trail-title').val()
+  object['title'] = $('.create-trail-title').val()
   object['description'] = $('.create-trail-description').val()
   object['state'] = $('.create-trail-state').val()
   object['creator'] = $('.current-user-id').val()
