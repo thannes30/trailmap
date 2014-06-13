@@ -14,6 +14,7 @@ class TrailsController < ApplicationController
     attributes = params.require(:trail).permit(:title, :description, :state, :creator)
     coordinates = {coords: arrayify(params.require(:trail).require(:coords))}
     attributes.merge(coordinates)
+
   end
 
   def arrayify(hash)
