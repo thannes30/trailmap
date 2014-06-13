@@ -1,8 +1,8 @@
 
-var newTrail = []
+var newTrailCoords = []
 function trailCoords(lat, long){
   var coord = [lat, long]
-  newTrail.push(coord)
+  newTrailCoords.push(coord)
 }
 
 var poly;
@@ -27,6 +27,24 @@ function initialize() {
 
   // Add a listener for the click event
   google.maps.event.addListener(map, 'click', addLatLng);
+
+
+  $('.create-trail-button').on('click', function(){
+
+  var newTrail = makeTrail()
+  var currentUserId = $('.current-user-id').val()
+  console.log(newTrail)
+  $.ajax({
+    url: '/trails',
+    method: 'post',
+    dataType: 'json',
+    data: {trail: newTrail},
+    success: function(data){
+      console.log(data)
+      // window.location.href='/trails/' + currentUserId
+    }
+  })
+})
 }
 
 /**
@@ -51,3 +69,16 @@ function addLatLng(event) {
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
+
+function makeTrail(){
+  var object = {}
+  object['trail'] = $('.create-trail-title').val()
+  object['description'] = $('.create-trail-description').val()
+  object['state'] = $('.create-trail-state').val()
+  object['creator'] = $('.current-user-id').val()
+  object['coords'] = newTrailCoords
+  return object
+}
+
+
+

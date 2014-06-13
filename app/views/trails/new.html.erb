@@ -1,8 +1,17 @@
 <h1>Create your trail</h1>
 
 <div id="map-trail">
-
 </div>
+
+<form action="/trails" method="post" id="create-trail-form">
+  <%= token_tag %>
+  <input class='create-trail-title' type="text" name="trail[title]" placeholder="Title">
+  <input class='create-trail-description' type="text" name="trail[description]" placeholder="description">
+  <input class='create-trail-state' type="text" name="trail[state]" placeholder="State">
+  <input class="current-user-id" type="hidden" value="<%=current_user.id%>">
+  <button class='create-trail-button'>Create Trail</button>
+
+</form>
 
 
 
