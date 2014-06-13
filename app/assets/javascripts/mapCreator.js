@@ -29,7 +29,7 @@ function initialize() {
   google.maps.event.addListener(map, 'click', addLatLng);
 
 
-  $('.create-trail-form').on('submit', function(e){
+  $('.create-trail-button').on('click', function(e){
   e.preventDefault();
   var newTrail = makeTrail();
   var currentUserId = $('.current-user-id').val();
