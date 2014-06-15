@@ -10,3 +10,7 @@
 
 
 <div id="main-map"></div>
+
+<% content_for :custom_javascript do %>
+  <%= javascript_include_tag 'trailsViewer'%>
+<% end %>
