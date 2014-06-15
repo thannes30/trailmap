@@ -14,7 +14,8 @@ function initialize() {
   var mapOptions = {
     zoom: 4,
     // Center the map on Chicago, USA.
-    center: centerOfUS
+    center: centerOfUS,
+    scaleControl: true
   };
 
   map = new google.maps.Map(document.getElementById('map-trail'), mapOptions);

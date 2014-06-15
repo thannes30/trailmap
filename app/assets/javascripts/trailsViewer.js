@@ -40,6 +40,7 @@ var map;
 function initialize() {
   var mapOptions = {
     zoom: 4,
+    scaleControl: true,
     center: centerOfUS
   };
 
