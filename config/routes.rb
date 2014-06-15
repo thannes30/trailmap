@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get '/profile' => 'users#profile', as: 'profile'
   get '/trails/new/:user_id' => 'trails#new'
   post '/trails' => 'trails#create'
+  get '/trails' => 'trails#index'
 
 
 end
