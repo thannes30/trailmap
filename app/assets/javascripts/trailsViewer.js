@@ -40,7 +40,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 
 
 
-// THIS WEEKEND TIM, SET TIMEOUT DROP
+// THIS WEEKEND TIM, SET TIMEOUT DROP FOR ALL MARKERS
 // var berlin = new google.maps.LatLng(52.520816, 13.410186);
 
 // var neighborhoods = [

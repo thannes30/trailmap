@@ -14,8 +14,6 @@ function TrailView(model){
   this.el = undefined;
 }
 
-TrailView.
-
 function TrailCollection(){
   this.trails = {}
 }
