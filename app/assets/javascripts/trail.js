@@ -1,6 +1,7 @@
 
 
 function TrailModel(obj){
+  this.id = obj.id;
   this.title = obj.title;
   this.description = obj.description;
   this.state = obj.state;
