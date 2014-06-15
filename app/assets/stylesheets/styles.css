@@ -1,12 +1,11 @@
 #map-trail {
   height: 500px;
-  width: 500px;
+  width: 700px;
   border: solid black 1px;
 }
 
 #main-map{
   height: 500px;
   width: 700px;
-  padding: 0px;
   border: solid black 1px;
 }

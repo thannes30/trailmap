@@ -14,7 +14,6 @@
 //     title: 'All Markers'
 //   });
 // }
-
 // google.maps.event.addDomListener(window, 'load', initialize);
 
 
@@ -49,7 +48,7 @@ function initialize() {
 
   marker = new google.maps.Marker({
     map:map,
-    draggable:true,
+    // draggable:true,
     animation: google.maps.Animation.DROP,
     position: testHikeCoords
     // position: flightPlanCoordinates

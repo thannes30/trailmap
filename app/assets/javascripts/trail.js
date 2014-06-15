@@ -28,6 +28,7 @@ TrailCollection.prototype.fetch = function(){
       $.each(data, function(i, datum){
         var trail = new TrailModel(datum);
         that.trails[trail.id] = trail;
+        // $('#main-map').
       });
     }
   })
