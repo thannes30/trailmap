@@ -1,6 +1,30 @@
-// var trailsMap = new google.maps.Map(document.getElementById('all-trails-map'),
-//       mapOptions);
+//Simple drop of marker
+// function initialize() {
+//   var myLatlng = new google.maps.LatLng(41.026955,-74.1594329);
+//   var mapOptions = {
+//     zoom: 8,
+//     center: myLatlng
+//   }
 
+//   var map = new google.maps.Map(document.getElementById('main-map'), mapOptions);
+
+//   var marker = new google.maps.Marker({
+//     position: myLatlng,
+//     map: map,
+//     title: 'All Markers'
+//   });
+// }
+
+// google.maps.event.addDomListener(window, 'load', initialize);
+
+
+
+
+
+//Animated bounce drop of marker
+
+var centerOfUS = new google.maps.LatLng(39.8104, -96.5560);
+var testHikeCoords = new google.maps.LatLng(41.0269, -74.1594);
 
 // function allcoords(){
 //   var flightPlanCoordinates = [
@@ -11,79 +35,35 @@
 //   ];
 // }
 
-
-
-
+var marker;
+var map;
 
 function initialize() {
-  var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
   var mapOptions = {
     zoom: 4,
-    center: myLatlng
-  }
+    center: centerOfUS
+  };
 
-  var map = new google.maps.Map(document.getElementById('main-map'), mapOptions);
+  map = new google.maps.Map(document.getElementById('main-map'),
+          mapOptions);
 
-  var marker = new google.maps.Marker({
-    position: myLatlng,
-    map: map,
-    title: 'All Markers'
+  marker = new google.maps.Marker({
+    map:map,
+    draggable:true,
+    animation: google.maps.Animation.DROP,
+    position: testHikeCoords
+    // position: flightPlanCoordinates
   });
+  google.maps.event.addListener(marker, 'click', toggleBounce);
+}
+
+function toggleBounce() {
+
+  if (marker.getAnimation() != null) {
+    marker.setAnimation(null);
+  } else {
+    marker.setAnimation(google.maps.Animation.BOUNCE);
+  }
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
-
-
-
-
-
-
-
-
-// THIS WEEKEND TIM, SET TIMEOUT DROP FOR ALL MARKERS
-// var berlin = new google.maps.LatLng(52.520816, 13.410186);
-
-// var neighborhoods = [
-//   new google.maps.LatLng(52.511467, 13.447179),
-//   new google.maps.LatLng(52.549061, 13.422975),
-//   new google.maps.LatLng(52.497622, 13.396110),
-//   new google.maps.LatLng(52.517683, 13.394393)
-// ];
-
-// var markers = [];
-// var iterator = 0;
-
-// var map;
-
-// function initialize() {
-//   var mapOptions = {
-//     zoom: 12,
-//     center: berlin
-//   };
-
-//   map = new google.maps.Map(document.getElementById('main-map'),
-//           mapOptions);
-
-// }
-
-// function drop() {
-//   for (var i = 0; i < neighborhoods.length; i++) {
-//     setTimeout(function() {
-//       addMarker();
-//     }, i * 200);
-//   }
-// }
-
-
-// function addMarker() {
-//   markers.push(new google.maps.Marker({
-//     position: neighborhoods[iterator],
-//     map: map,
-//     draggable: false,
-//     animation: google.maps.Animation.DROP
-//   }));
-//   iterator++;
-// }
-
-// google.maps.event.addDomListener(window, 'load', initialize);
-
