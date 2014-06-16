@@ -47,6 +47,16 @@ $(function(){
               $('.errors').append($('<p>').html(value))
             })
           }
+
+          else {
+            $('.errors').html('')
+            $('#username').val($('#user_email').val())
+            $('#password').val($('#user_password').val())
+            $('.signup-container').html('Success!')
+            $('.loginform').show(500)
+            $('.signup-container').fadeOut()
+            $('.background').fadeOut()
+          }
         }
       })
   })
