@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   end
 
   def profile
-
+    @trail = Trail.all
   end
 
   private
