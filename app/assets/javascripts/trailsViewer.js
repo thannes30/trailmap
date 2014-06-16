@@ -11,6 +11,10 @@ function initialize() {
     center: centerOfUS
   };
 
+   var image = {
+        url: 'assets/hike.png',
+      }
+
   map = new google.maps.Map(document.getElementById('main-map'),
           mapOptions);
 
@@ -18,17 +22,21 @@ function initialize() {
   allTrails.fetch(function(){
     // callback to fetch after all models are added
     $.each(allTrails.trails, function(prop, val){
-      // console.log(prop, val)
+      var title = title;
+      var description = description;
       var hikeCoords = new google.maps.LatLng(val.startMarker[0], val.startMarker[1]);
       marker = new google.maps.Marker({
         map:map,
+        icon: image,
         // draggable:true,
         animation: google.maps.Animation.DROP,
         position: hikeCoords
       });
 
+
+
       var infowindow = new google.maps.InfoWindow({
-        content: 'This hike was great'
+        content: this.title + this.description,
       });
 
       google.maps.event.addListener(marker, 'mouseover', function(){
@@ -43,12 +51,5 @@ function initialize() {
   })
 } // initialize
 
-function toggleBounce() {
-  if (marker.getAnimation() != null) {
-    marker.setAnimation(null);
-  } else {
-    marker.setAnimation(google.maps.Animation.BOUNCE);
-  }
-}
 
 google.maps.event.addDomListener(window, 'load', initialize);
