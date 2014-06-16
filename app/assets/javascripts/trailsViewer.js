@@ -18,7 +18,7 @@ function initialize() {
   allTrails.fetch(function(){
     // callback to fetch after all models are added
     $.each(allTrails.trails, function(prop, val){
-      console.log(prop, val)
+      // console.log(prop, val)
       var hikeCoords = new google.maps.LatLng(val.startMarker[0], val.startMarker[1]);
       marker = new google.maps.Marker({
         map:map,
@@ -26,14 +26,25 @@ function initialize() {
         animation: google.maps.Animation.DROP,
         position: hikeCoords
       });
-      google.maps.event.addListener(marker, 'mouseover', toggleBounce);
+
+      var infowindow = new google.maps.InfoWindow({
+        content: 'This hike was great'
+      });
+
+      google.maps.event.addListener(marker, 'mouseover', function(){
+        infowindow.open(map, this);
+      });
+
+      google.maps.event.addListener(marker, 'mouseout', function() {
+        infowindow.close();
+      });
+
     })
   })
   loginforms()
 } // initialize
 
 function toggleBounce() {
-
   if (marker.getAnimation() != null) {
     marker.setAnimation(null);
   } else {
