@@ -26,7 +26,7 @@ function initialize() {
         animation: google.maps.Animation.DROP,
         position: hikeCoords
       });
-      google.maps.event.addListener(marker, 'click', toggleBounce);
+      google.maps.event.addListener(marker, 'mouseover', toggleBounce);
     })
   })
 } // initialize
