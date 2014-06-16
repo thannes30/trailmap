@@ -1,6 +1,7 @@
 
 
 function TrailModel(obj){
+  this.id = obj.id;
   this.title = obj.title;
   this.description = obj.description;
   this.state = obj.state;
@@ -18,18 +19,20 @@ function TrailCollection(){
   this.trails = {}
 }
 
-TrailCollection.prototype.fetch = function(){
+TrailCollection.prototype.fetch = function(cb){
   var that = this;
-  $.ajax({
-    url: '/',
+  return $.ajax({
+    url: '/trails',
     method: 'get',
     dataType: 'json',
-    success: function(data){
+    success: function(data, status, jqxhr){
       $.each(data, function(i, datum){
         var trail = new TrailModel(datum);
         that.trails[trail.id] = trail;
-        // $('#main-map').
       });
+      if(typeof cb === 'function'){
+        cb(data);
+      }
     }
   })
 }

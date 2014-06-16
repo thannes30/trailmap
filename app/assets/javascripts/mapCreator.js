@@ -82,6 +82,8 @@ function addLatLng(event) {
 
 google.maps.event.addDomListener(window, 'load', initialize);
 
+
+
 function makeTrail(){
   var object = {}
   object['title'] = $('.create-trail-title').val()
