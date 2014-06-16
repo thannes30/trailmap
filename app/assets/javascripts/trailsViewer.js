@@ -33,19 +33,22 @@ function initialize() {
         position: hikeCoords
       });
 
-
+      // var html = '<div id='infoWindow'></div>';
 
       var infowindow = new google.maps.InfoWindow({
-        content: this.title + this.description,
+        content: this.title + ': ' + this.description,
       });
 
-      google.maps.event.addListener(marker, 'mouseover', function(){
+      google.maps.event.addListener(marker, 'click', function(){
         infowindow.open(map, this);
+        // infowindow.setContent(html)
       });
 
-      google.maps.event.addListener(marker, 'mouseout', function() {
-        infowindow.close();
-      });
+      // "<button onclick="myFunction()"> 'Click me'</button>"
+
+      // google.maps.event.addListener(marker, 'click', function() {
+      //   infowindow.close();
+      // });
 
     })
   })
