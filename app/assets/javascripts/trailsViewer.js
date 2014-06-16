@@ -19,6 +19,10 @@ function initialize() {
     // callback to fetch after all models are added
     $.each(allTrails.trails, function(prop, val){
       // console.log(prop, val)
+
+      var title = title;
+      var comments = comments;
+
       var hikeCoords = new google.maps.LatLng(val.startMarker[0], val.startMarker[1]);
       marker = new google.maps.Marker({
         map:map,
