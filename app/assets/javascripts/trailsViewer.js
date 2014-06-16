@@ -47,12 +47,5 @@ function initialize() {
   })
 } // initialize
 
-function toggleBounce() {
-  if (marker.getAnimation() != null) {
-    marker.setAnimation(null);
-  } else {
-    marker.setAnimation(google.maps.Animation.BOUNCE);
-  }
-}
 
 google.maps.event.addDomListener(window, 'load', initialize);
