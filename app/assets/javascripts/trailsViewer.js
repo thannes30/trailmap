@@ -27,6 +27,7 @@ function initialize() {
       var hikeCoords = new google.maps.LatLng(val.startMarker[0], val.startMarker[1]);
       marker = new google.maps.Marker({
         map:map,
+        icon: image,
         // draggable:true,
         animation: google.maps.Animation.DROP,
         position: hikeCoords
