@@ -33,6 +33,8 @@ function initialize() {
         position: hikeCoords
       });
 
+
+
       var infowindow = new google.maps.InfoWindow({
         content: this.title + this.description,
       });
