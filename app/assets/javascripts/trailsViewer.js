@@ -41,7 +41,6 @@ function initialize() {
 
     })
   })
-  loginforms()
 } // initialize
 
 function toggleBounce() {
