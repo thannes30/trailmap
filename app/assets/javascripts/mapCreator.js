@@ -5,14 +5,17 @@ function trailCoords(lat, long){
   newTrailCoords.push(coord)
 }
 
+var centerOfUS = new google.maps.LatLng(39.8104, -96.5560);
+
 var poly;
 var map;
 
 function initialize() {
   var mapOptions = {
-    zoom: 7,
+    zoom: 4,
     // Center the map on Chicago, USA.
-    center: new google.maps.LatLng(10.000000, -87.624333)
+    center: centerOfUS,
+    scaleControl: true
   };
 
   map = new google.maps.Map(document.getElementById('map-trail'), mapOptions);
@@ -33,7 +36,7 @@ function initialize() {
   e.preventDefault();
   var newTrail = makeTrail();
   var currentUserId = $('.current-user-id').val();
-  console.log(newTrail);
+  // console.log(newTrail);
   $.ajax({
     url: '/trails',
     method: 'post',
@@ -78,6 +81,8 @@ function addLatLng(event) {
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
+
+
 
 function makeTrail(){
   var object = {}
