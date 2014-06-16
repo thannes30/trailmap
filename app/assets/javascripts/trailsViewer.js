@@ -11,6 +11,10 @@ function initialize() {
     center: centerOfUS
   };
 
+   var image = {
+        url: 'assets/hike.png',
+      }
+
   map = new google.maps.Map(document.getElementById('main-map'),
           mapOptions);
 
