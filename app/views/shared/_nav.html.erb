@@ -33,18 +33,8 @@
           </div>
       <div class="signup-container">
         <div class="close-signup">X</div>
-          <% if @user.errors.any? %>
             <div class="errors">
-              <p class="error-count">
-                The form has <%= pluralize(@user.errors.count, "error") %>.
-              </p>
-              <ul class= "error-list">
-              <% @user.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-              <% end %>
-              </ul>
             </div>
-          <% end %>
 
         <div class="signup">
           <h1>Sign Up</h1>

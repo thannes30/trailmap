@@ -27,21 +27,27 @@ $(function(){
     $('.signup-container').fadeOut()
   })
 
-  // $('.loginform').on('submit', function(e){
-  //   e.preventDefault()
-  //   var usernameI = $('#username').val()
-  //   var passwordI = $('#password').val()
-  //   var loginDetails = {username: usernameI, password: passwordI}
-  //   $.ajax({
-  //     url: '/sessions',
-  //     method: 'post',
-  //     dataType: 'json',
-  //     data: {login: loginDetails},
-  //     success: function(data){
-  //       console.log(data)
-  //     }
+  $('.new_user').on('submit', function(e){
+    e.preventDefault()
+    var usernameI = $('#user_username').val()
+    var emailI = $('#user_email').val()
+    var passwordI = $('#user_password').val()
 
-  //   })
-
-  // })
+    var signupDetails = {username: usernameI, email: emailI, password: passwordI}
+      $.ajax({
+        url: '/users',
+        method: 'post',
+        dataType: 'json',
+        data: {user: signupDetails},
+        success: function(data){
+          lichard = data
+          $('.errors').html('')
+          if (!data['id']) {
+            $.each(data, function(index, value){
+              $('.errors').append($('<p>').html(value))
+            })
+          }
+        }
+      })
+  })
 })
