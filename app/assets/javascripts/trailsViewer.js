@@ -29,7 +29,7 @@ function initialize() {
       });
 
       var infowindow = new google.maps.InfoWindow({
-        content: 'This hike was great'
+        content: this.title + this.description,
       });
 
       google.maps.event.addListener(marker, 'mouseover', function(){
