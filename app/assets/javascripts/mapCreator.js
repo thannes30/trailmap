@@ -1,8 +1,8 @@
 
-var newTrailCoords = []
-function trailCoords(lat, long){
-  var coord = [lat, long]
-  newTrailCoords.push(coord)
+var newTrailCoords = [];
+function trailCoords(lat, long) {
+  var coord = [lat, long];
+  newTrailCoords.push(coord);
 }
 
 var centerOfUS = new google.maps.LatLng(39.8104, -96.5560);
@@ -31,34 +31,30 @@ function initialize() {
   // Add a listener for the click event
   google.maps.event.addListener(map, 'click', addLatLng);
 
-
-  $('.create-trail-button').on('click', function(e){
-  e.preventDefault();
-  var newTrail = makeTrail();
-  var currentUserId = $('.current-user-id').val();
-  // console.log(newTrail);
-  $.ajax({
-    url: '/trails',
-    method: 'post',
-    dataType: 'json',
-    data: {trail: newTrail},
-    success: function(data){
-      console.log(data)
-      // window.location.href='/trails/' + currentUserId
-    }
+  $('.create-trail-button').on('click', function(e) {
+    e.preventDefault();
+    var newTrail = makeTrail();
+    var currentUserId = $('.current-user-id').val();
+    // console.log(newTrail);
+    $.ajax({
+      url: '/trails',
+      method: 'post',
+      dataType: 'json',
+      data: {trail: newTrail},
+      success: function(data) {
+        console.log(data);
+        // window.location.href='/trails/' + currentUserId
+      }
+    });
   });
-});
 
-}
-
-// $('form.create-trail').on('submit', function(e) {
-//   var trailMarkers = makeTrail();
-//   $.each(trailMarkers.coords, function(index, coordinates) {
-//     var hiddenField = // create hidden field;
-//     // add value to hidden field
-//     // put hidden field into form
-//   })
-// });
+  $("li").on("click", function(e) {
+    console.log("works");
+    var getTrails = new TrailCollection;
+    getTrails.fetch();
+    console.log(getTrails.trails);
+  })
+} // initialize
 
 /**
  * Handles click events on a map, and adds a new point to the Polyline.
@@ -71,8 +67,8 @@ function addLatLng(event) {
   // Because path is an MVCArray, we can simply append a new coordinate
   // and it will automatically appear.
   path.push(event.latLng);
-  lichard = event.latLng
-  trailCoords(event.latLng['k'], event.latLng['A'])
+  lichard = event.latLng;
+  trailCoords(event.latLng['k'], event.latLng['A']);
   // Add a new marker at the new plotted point on the polyline.
   var marker = new google.maps.Marker({
     position: event.latLng,
@@ -83,17 +79,16 @@ function addLatLng(event) {
 
 google.maps.event.addDomListener(window, 'load', initialize);
 
-
-
-function makeTrail(){
-  var object = {}
-  object['title'] = $('.create-trail-title').val()
-  object['description'] = $('.create-trail-description').val()
-  object['state'] = $('.create-trail-state').val()
-  object['creator'] = $('.current-user-id').val()
-  object['coords'] = newTrailCoords
-  return object
+function makeTrail() {
+  var object = {};
+  object['title'] = $('.create-trail-title').val();
+  object['description'] = $('.create-trail-description').val();
+  object['state'] = $('.create-trail-state').val();
+  object['creator'] = $('.current-user-id').val();
+  object['coords'] = newTrailCoords;
+  return object;
 }
 
+function displayTrails() {
 
-
+}
