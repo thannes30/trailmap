@@ -11,6 +11,7 @@ var poly;
 var map;
 
 function initialize() {
+  loginforms()
   var mapOptions = {
     zoom: 4,
     // Center the map on Chicago, USA.
@@ -48,6 +49,7 @@ function initialize() {
     }
   });
 });
+
 }
 
 // $('form.create-trail').on('submit', function(e) {
