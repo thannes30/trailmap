@@ -24,6 +24,7 @@ function initialize() {
     $.each(allTrails.trails, function(prop, val){
       var title = title;
       var description = description;
+      var state = state;
       var hikeCoords = new google.maps.LatLng(val.startMarker[0], val.startMarker[1]);
       marker = new google.maps.Marker({
         map:map,
@@ -36,7 +37,8 @@ function initialize() {
       // var html = '<div id='infoWindow'></div>';
 
       var infowindow = new google.maps.InfoWindow({
-        content: this.title + ': ' + this.description,
+        content:"<b>"+'Title: '+"</b>"+this.title+"<br/>"+"<b>"+'State: '+"</b>"+this.state+"<br/>"+"<b>"+'Description: '+"</b>"+this.description,
+        maxWidth: 150
       });
 
       google.maps.event.addListener(marker, 'click', function(){
