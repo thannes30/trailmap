@@ -29,6 +29,7 @@ function initialize() {
       google.maps.event.addListener(marker, 'click', toggleBounce);
     })
   })
+  loginforms()
 } // initialize
 
 function toggleBounce() {
