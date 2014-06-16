@@ -11,12 +11,13 @@ class TrailsController < ApplicationController
 
   def create
     trail = Trail.create(trail_params)
+    current_user.trails << trail
     render :json => trail.to_json
   end
 
   private
   def trail_params
-    attributes = params.require(:trail).permit(:title, :description, :state, :creator)
+    attributes = params.require(:trail).permit(:title, :description, :state)
     coordinates = {coords: arrayify(params.require(:trail).require(:coords))}
     attributes.merge(coordinates)
 

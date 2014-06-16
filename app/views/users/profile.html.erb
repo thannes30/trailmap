@@ -4,10 +4,8 @@
 <h1>Create your trail</h1>
 
 <ul>
-<% @trail.each do |i| %>
-  <% if current_user.id == i.creator %>
-    <li><%= i.title %></li>
-  <% end %>
+<% @trails.each do |i| %>
+  <li><%= i.title %></li>
 <% end %>
 </ul>
 

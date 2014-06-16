@@ -17,6 +17,7 @@ class UsersController < ApplicationController
 
   def profile
     @trail = Trail.all
+    @trails = current_user.trails
   end
 
   private

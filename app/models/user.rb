@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :trails
+  has_many :favorites
   authenticates_with_sorcery!
   validates :username, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true, email: true
