@@ -1,6 +1,7 @@
 class WelcomeController < ApplicationController
 
   def index
+    @user = User.new
     trails = Trail.all
     @trail_start_markers = get_trail_start_markers(trails)
   end
