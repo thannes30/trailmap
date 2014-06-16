@@ -11,6 +11,6 @@ Rails.application.routes.draw do
   get '/trails/new/:user_id' => 'trails#new'
   post '/trails' => 'trails#create'
   get '/trails' => 'trails#index'
-
+  post '/trails/favorite' => 'trails#favorite'
 
 end

@@ -36,3 +36,19 @@ TrailCollection.prototype.fetch = function(cb){
     }
   })
 }
+
+function addFavorite(){
+  // setTimeout(function(){
+    $('.favorite').on('click', function(event){
+      var id = $(event.target).data('id');
+      $.ajax({
+        url: '/trails/favorite',
+        method: 'post',
+        dataType: 'json',
+        data: {id: id},
+        success: function(data){
+          $(event.target).remove();
+        }
+      })
+    })
+  }

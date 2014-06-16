@@ -10,13 +10,10 @@ function initialize() {
     center: centerOfUS
   };
 
-  // function favoriteTrail(){
 
-  // }
-
-   var image = {
-        url: 'assets/hike.png',
-      }
+  var image = {
+    url: 'assets/hike.png',
+  }
 
   map = new google.maps.Map(document.getElementById('main-map'),
           mapOptions);
@@ -29,6 +26,7 @@ function initialize() {
       var description = description;
       var state = state;
       var hikeCoords = new google.maps.LatLng(val.startMarker[0], val.startMarker[1]);
+      var id = id;
       marker = new google.maps.Marker({
         map:map,
         icon: image,
@@ -39,12 +37,15 @@ function initialize() {
       var infowindow = new google.maps.InfoWindow({
         content:"<b>"+'Title: '+"</b>"+this.title+"<br/>"+"<b>"+
                 'State: '+"</b>"+this.state+"<br/>"+"<b>"+'Description: '
-                +"</b>"+this.description+"<br/>"+'<button onclick="favoriteTrail()" class="favorite">Favorite This Hike</button>',
-        maxWidth: 150
+                +"</b>"+this.description+"<br/>"+
+                '<button class="favorite" data-id='+this.id+'>Favorite This Hike</button>',
+        maxWidth: 150,
+
       });
 
       google.maps.event.addListener(marker, 'click', function(){
-        infowindow.open(map, this);
+        infowindow.open(map, this, addFavorite);
+        addFavorite();
       });
 
       // "<button onclick="myFunction()"> 'Click me'</button>"
