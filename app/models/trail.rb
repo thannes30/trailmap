@@ -1,5 +1,6 @@
 class Trail < ActiveRecord::Base
   has_many :notes
+  has_many :favorites
   belongs_to :user
   validates_presence_of :coords, :on => :create
   validates_presence_of :description, :on => :create

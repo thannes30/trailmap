@@ -1,4 +1,3 @@
-//Animated bounce drop of marker
 var centerOfUS = new google.maps.LatLng(39.8104, -96.5560);
 // var testHikeCoords = new google.maps.LatLng(41.0269, -74.1594);
 var marker;
@@ -10,6 +9,10 @@ function initialize() {
     scaleControl: true,
     center: centerOfUS
   };
+
+  // function favoriteTrail(){
+
+  // }
 
    var image = {
         url: 'assets/hike.png',
@@ -29,21 +32,19 @@ function initialize() {
       marker = new google.maps.Marker({
         map:map,
         icon: image,
-        // draggable:true,
         animation: google.maps.Animation.DROP,
         position: hikeCoords
       });
 
-      // var html = '<div id='infoWindow'></div>';
-
       var infowindow = new google.maps.InfoWindow({
-        content:"<b>"+'Title: '+"</b>"+this.title+"<br/>"+"<b>"+'State: '+"</b>"+this.state+"<br/>"+"<b>"+'Description: '+"</b>"+this.description,
+        content:"<b>"+'Title: '+"</b>"+this.title+"<br/>"+"<b>"+
+                'State: '+"</b>"+this.state+"<br/>"+"<b>"+'Description: '
+                +"</b>"+this.description+"<br/>"+'<button onclick="favoriteTrail()" class="favorite">Favorite This Hike</button>',
         maxWidth: 150
       });
 
       google.maps.event.addListener(marker, 'click', function(){
         infowindow.open(map, this);
-        // infowindow.setContent(html)
       });
 
       // "<button onclick="myFunction()"> 'Click me'</button>"

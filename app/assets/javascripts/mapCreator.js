@@ -90,7 +90,6 @@ function makeTrail(){
   object['title'] = $('.create-trail-title').val()
   object['description'] = $('.create-trail-description').val()
   object['state'] = $('.create-trail-state').val()
-  object['creator'] = $('.current-user-id').val()
   object['coords'] = newTrailCoords
   return object
 }
