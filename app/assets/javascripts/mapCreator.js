@@ -26,6 +26,7 @@ function initialize() {
     strokeWeight: 3,
   };
   poly = new google.maps.Polyline(polyOptions);
+  trails.push(poly)
   poly.setMap(map);
 
   // Add a listener for the click event
@@ -33,13 +34,56 @@ function initialize() {
 
   setEventHandlers()
 
-  // var append = false;
+} // initialize
 
-  var markers = []
-  var trails = []
+/**
+ * Handles click events on a map, and adds a new point to the Polyline.
+ * @param {google.maps.MouseEvent} event
+ */
+function addLatLng(event) {
 
+  var path = poly.getPath();
 
-  $("li").on("click", function(event) {
+  // Because path is an MVCArray, we can simply append a new coordinate
+  // and it will automatically appear.
+  path.push(event.latLng);
+  trailCoords(event.latLng['k'], event.latLng['A']);
+  // Add a new marker at the new plotted point on the polyline.
+  var marker = new google.maps.Marker({
+    position: event.latLng,
+    title: '#' + path.getLength(),
+    map: map
+  });
+  markers.push(marker)
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+function makeTrail(){
+  var object = {}
+  object['title'] = $('.create-trail-title').val();
+  object['description'] = $('.create-trail-description').val();
+  object['state'] = $('.create-trail-state').val();
+  object['coords'] = newTrailCoords;
+  return object;
+}
+
+function setEventHandlers(){
+    liClick()
+    createTrailClick()
+}
+
+var markers = []
+var trails = []
+
+function removeFromMap(things){
+  $(things).each(function(i, val){
+    val.setMap(null);
+  })
+}
+
+function liClick(){
+    $("li").on("click", function(event) {
     $('.trail-info').html('')
 
     var myTrail = $(this).data('coords');
@@ -47,18 +91,14 @@ function initialize() {
     var trailTitle = $(this).data('title');
     var trailState = $(this).data('state');
     var trailDescription = $(this).data('description');
+    var trailId = $(this).data('trail-id');
 
     $('.trail-info').append("<li><b>Title:</b>"+trailTitle+"</li>")
     $('.trail-info').append("<li><b>State:</b>"+trailState+"</li>")
     $('.trail-info').append("<li><b>Description:</b>"+trailDescription+"</li>")
-
-    $(markers).each(function(i, val){
-      val.setMap(null);
-    })
-
-    $(trails).each(function(i,val){
-      val.setMap(null);
-    })
+    $('.trail-info').attr('data-trail-id', trailId)
+    removeFromMap(markers)
+    removeFromMap(trails)
 
     var markerArray = [myTrail[0], myTrail[myTrail.length-1]];
     $(markerArray).each(function(array) {
@@ -86,45 +126,11 @@ function initialize() {
     })
     append.setMap(map);
     trails.push(append)
-
-    lichard = event.target
-  })
-} // initialize
-
-/**
- * Handles click events on a map, and adds a new point to the Polyline.
- * @param {google.maps.MouseEvent} event
- */
-function addLatLng(event) {
-
-  var path = poly.getPath();
-
-  // Because path is an MVCArray, we can simply append a new coordinate
-  // and it will automatically appear.
-  path.push(event.latLng);
-  lichard = event.latLng;
-  trailCoords(event.latLng['k'], event.latLng['A']);
-  // Add a new marker at the new plotted point on the polyline.
-  var marker = new google.maps.Marker({
-    position: event.latLng,
-    title: '#' + path.getLength(),
-    map: map
-  });
+    })
 }
 
-google.maps.event.addDomListener(window, 'load', initialize);
-
-function makeTrail(){
-  var object = {}
-  object['title'] = $('.create-trail-title').val();
-  object['description'] = $('.create-trail-description').val();
-  object['state'] = $('.create-trail-state').val();
-  object['coords'] = newTrailCoords;
-  return object;
-}
-
-function setEventHandlers(){
-    $('.create-trail-button').on('click', function(e) {
+function createTrailClick(){
+  $('.create-trail-button').on('click', function(e) {
     e.preventDefault();
     var newTrail = makeTrail();
     var currentUserId = $('.current-user-id').val();
@@ -135,14 +141,21 @@ function setEventHandlers(){
       dataType: 'json',
       data: {trail: newTrail},
       success: function(data) {
-  //         <li class='trail' data-trail-id='<%=trail.id.to_json %>' data-coords='<%= trail.coords.to_json %>' data-title='<%= trail.title.to_json %>' data-state='<%= trail.state.to_json %>' data-description='<%= trail.description.to_json %>'>
-  //   <%= trail.title %>
-  // </li>
         var listTrail = new TrailModel(data)
-        var newLi = $('<li>').css('class', 'trail').css('data-trail-id', listTrail.id).css('data-state', listTrail.state).css('data-title', listTrail.title).css('data-coords', listTrail.coords).css('data-description', listTrail.description).html(listTrail.title)
+        var newLi = $('<li>')
+        newLi.attr('class', 'trail').attr('data-trail-id', listTrail.id).attr('data-state', listTrail.state).attr('data-title', listTrail.title).attr('data-coords', listTrail.coords).attr('data-description', listTrail.description).text(listTrail.title)
         $('.trails').append(newLi)
-        setEventHandlers()
+        liClick()
+        // removeFromMap(markers)
+        // removeFromMap(trails)
+        clearFields()
       }
     });
   });
+}
+
+function clearFields(){
+  $('.create-trail-title').html('')
+  $('.create-trail-state').html('')
+  $('.create-trail-description').html('')
 }

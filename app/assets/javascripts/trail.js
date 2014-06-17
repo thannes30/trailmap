@@ -4,7 +4,6 @@ function TrailModel(obj){
   this.title = obj.title;
   this.description = obj.description;
   this.state = obj.state;
-  this.creator = obj.creator;
   this.startMarker = obj.coords[0];
   this.coords = obj.coords;
 }
