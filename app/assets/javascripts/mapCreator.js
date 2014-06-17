@@ -43,7 +43,6 @@ function initialize() {
       data: {trail: newTrail},
       success: function(data) {
         console.log(data);
-        // window.location.href='/trails/' + currentUserId
       }
     });
   });
@@ -54,7 +53,6 @@ function initialize() {
     var markerArray = [myTrail[0], myTrail[myTrail.length-1]];
     $(markerArray).each(function(array) {
       var eachMarker = new google.maps.LatLng(markerArray[array][0], markerArray[array][1]);
-      console.log(eachMarker);
       var trailMarker = new google.maps.Marker({
         position: eachMarker,
         map: map
