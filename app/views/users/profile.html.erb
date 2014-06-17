@@ -1,13 +1,27 @@
 
-<h2>This is <%=current_user.username%>'s profile page</h2>
+<h1>Welcome abck <%=current_user.username%></h1>
 
-<h1>Create your trail</h1>
+<h2>My trails</h2>
 
-<ul>
-<% @trails.each do |i| %>
-  <li><%= i.title %></li>
+<ul class='trails'>
+<% @trails.each do |trail| %>
+  <li id='trail' data-coords='<%= trail.coords.to_json %>'>
+    <%= trail.title %>
+  </li>
 <% end %>
 </ul>
+
+<h2>Favorite trails</h2>
+
+<ul class="favorites">
+<% @favorites.each do |favorite| %>
+  <li id='favorite' data-coords='<%= favorite.trail.coords.to_json %>'>
+    <%= favorite.trail.title %>, <%= favorite.user.username %>
+  </li>
+<% end %>
+</ul>
+
+<h2>Create your trail</h2>
 
 <div id="map-trail">
 </div>

@@ -1,5 +1,4 @@
 
-
 function TrailModel(obj){
   this.id = obj.id;
   this.title = obj.title;
@@ -7,7 +6,7 @@ function TrailModel(obj){
   this.state = obj.state;
   this.creator = obj.creator;
   this.startMarker = obj.coords[0];
-
+  this.coords = obj.coords;
 }
 
 function TrailView(model){
@@ -16,7 +15,7 @@ function TrailView(model){
 }
 
 function TrailCollection(){
-  this.trails = {}
+  this.trails = {};
 }
 
 TrailCollection.prototype.fetch = function(cb){
