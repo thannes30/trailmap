@@ -9,6 +9,14 @@ class TrailsController < ApplicationController
 
   end
 
+  def favorite
+    favorite = Favorite.new
+    current_user.favorites << favorite
+    Trail.find(params[:id]).favorites << favorite
+    favorite.save
+    render :json => favorite.to_json
+  end
+
   def create
     trail = Trail.create(trail_params)
     current_user.trails << trail
