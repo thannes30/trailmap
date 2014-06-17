@@ -5,7 +5,7 @@
 
 <ul class='trails'>
 <% @trails.each do |trail| %>
-  <li id='trail' data-coords='<%= trail.coords.to_json %>'>
+  <li class='trail' data-trail-id='<%=trail.id.to_json %>' data-coords='<%= trail.coords.to_json %>' data-title='<%= trail.title.to_json %>' data-state='<%= trail.state.to_json %>' data-description='<%= trail.description.to_json %>'>
     <%= trail.title %>
   </li>
 <% end %>

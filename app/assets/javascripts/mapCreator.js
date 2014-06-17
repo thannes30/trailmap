@@ -53,7 +53,7 @@ function initialize() {
   var trails = []
 
 
-  $("li").on("click", function() {
+  $("li").on("click", function(event) {
 
     var myTrail = $(this).data('coords');
 
@@ -83,6 +83,7 @@ function initialize() {
       // console.log(trailPosition);
       allCoords.push(trailPosition);
     })
+
     var append = new google.maps.Polyline({
       path: allCoords,
       strokeColor: '#f00',
@@ -91,6 +92,8 @@ function initialize() {
     })
     append.setMap(map);
     trails.push(append)
+
+    lichard = event.target
   })
 } // initialize
 
