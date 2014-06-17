@@ -47,11 +47,8 @@ function initialize() {
     });
   });
 
-  // var append = false;
-
   var markers = []
   var trails = []
-
 
   $("li").on("click", function(event) {
     $('.trail-info').html('')

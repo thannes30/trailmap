@@ -22,8 +22,22 @@
 </ul>
 
 <h2>Trail info</h2>
-<ul class="trail-info">
+<ul class="trail-info"></ul>
+
+<h2>Trail Notes</h2>
+<ul class="notes">
+<% @notes.each do |note| %>
+  <li id='note' data-message='<%= note.message.to_json %>'>
+    <%= note.user.username %>
+  </li>
+<% end %>
 </ul>
+
+<form action="/notes" method="post" id="create-note-form">
+  <%= token_tag %>
+  <input type="text" class="add-note" placeholder="Enter Note" name="note[message]">
+  <button class='create-note-button'>Add Note</button>
+</form>
 
 <h2>Create your trail</h2>
 <div id="map-trail">
