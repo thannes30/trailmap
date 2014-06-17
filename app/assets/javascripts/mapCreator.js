@@ -31,21 +31,7 @@ function initialize() {
   // Add a listener for the click event
   google.maps.event.addListener(map, 'click', addLatLng);
 
-  $('.create-trail-button').on('click', function(e) {
-    e.preventDefault();
-    var newTrail = makeTrail();
-    var currentUserId = $('.current-user-id').val();
-    // console.log(newTrail);
-    $.ajax({
-      url: '/trails',
-      method: 'post',
-      dataType: 'json',
-      data: {trail: newTrail},
-      success: function(data) {
-        console.log(data);
-      }
-    });
-  });
+  setEventHandlers()
 
   // var append = false;
 
@@ -127,4 +113,28 @@ function makeTrail(){
   object['state'] = $('.create-trail-state').val();
   object['coords'] = newTrailCoords;
   return object;
+}
+
+function setEventHandlers(){
+    $('.create-trail-button').on('click', function(e) {
+    e.preventDefault();
+    var newTrail = makeTrail();
+    var currentUserId = $('.current-user-id').val();
+    // console.log(newTrail);
+    $.ajax({
+      url: '/trails',
+      method: 'post',
+      dataType: 'json',
+      data: {trail: newTrail},
+      success: function(data) {
+  //         <li class='trail' data-trail-id='<%=trail.id.to_json %>' data-coords='<%= trail.coords.to_json %>' data-title='<%= trail.title.to_json %>' data-state='<%= trail.state.to_json %>' data-description='<%= trail.description.to_json %>'>
+  //   <%= trail.title %>
+  // </li>
+        var listTrail = new TrailModel(data)
+        var newLi = $('<li>').css('class', 'trail').css('data-trail-id', listTrail.id).css('data-state', listTrail.state).css('data-title', listTrail.title).css('data-coords', listTrail.coords).css('data-description', listTrail.description).html(listTrail.title)
+        $('.trails').append(newLi)
+        setEventHandlers()
+      }
+    });
+  });
 }
