@@ -15,7 +15,7 @@
 
 <ul class="favorites">
 <% @favorites.each do |favorite| %>
-  <li id='favorite' data-coords='<%= favorite.trail.coords.to_json %>' data-title='<%= favorite.trail.title.to_json %>' data-state='<%= favorite.trail.state.to_json %>' data-description='<%= favorite.trail.description.to_json %>'>
+  <li id='favorite' data-trail-id='<%=favorite.id.to_json %>' data-coords='<%= favorite.trail.coords.to_json %>' data-title='<%= favorite.trail.title.to_json %>' data-state='<%= favorite.trail.state.to_json %>' data-description='<%= favorite.trail.description.to_json %>'>
     <%= favorite.trail.title %>, <%= favorite.user.username %>
   </li>
 <% end %>
@@ -26,16 +26,12 @@
 
 <h2>Trail Notes</h2>
 <ul class="notes">
-<% @notes.each do |note| %>
-  <li id='note' data-message='<%= note.message.to_json %>'>
-    <%= note.user.username %>
-  </li>
-<% end %>
 </ul>
 
 <form action="/notes" method="post" id="create-note-form">
   <%= token_tag %>
   <input type="text" class="add-note" placeholder="Enter Note" name="note[message]">
+  <input type="hidden" name="note[trail_id]" class="note-trail-id" value=''>
   <button class='create-note-button'>Add Note</button>
 </form>
 

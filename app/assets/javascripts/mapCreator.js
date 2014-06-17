@@ -100,6 +100,8 @@ function liClick(){
     removeFromMap(markers)
     removeFromMap(trails)
 
+    getNotes()
+
     var markerArray = [myTrail[0], myTrail[myTrail.length-1]];
     $(markerArray).each(function(array) {
       var eachMarker = new google.maps.LatLng(markerArray[array][0], markerArray[array][1]);

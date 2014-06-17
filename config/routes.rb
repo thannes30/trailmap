@@ -14,5 +14,6 @@ Rails.application.routes.draw do
   post '/trails/favorite' => 'trails#favorite'
 
   post '/notes' => 'notes#create'
+  get '/notes' => 'notes#index'
 
 end

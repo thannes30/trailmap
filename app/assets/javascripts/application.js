@@ -13,6 +13,7 @@
 //= require jquery_ujs
 //= require nav
 //= require trail
+//= require note
 
 
 
