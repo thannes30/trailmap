@@ -10,10 +10,9 @@ function initialize() {
     center: centerOfUS
   };
 
-
   var image = {
     url: 'assets/hiker-small.png',
-  }
+  };
 
   map = new google.maps.Map(document.getElementById('main-map'),
           mapOptions);
@@ -28,7 +27,7 @@ function initialize() {
       var hikeCoords = new google.maps.LatLng(val.startMarker[0], val.startMarker[1]);
       var id = id;
       marker = new google.maps.Marker({
-        map:map,
+        map: map,
         icon: image,
         animation: google.maps.Animation.DROP,
         position: hikeCoords
@@ -39,8 +38,7 @@ function initialize() {
                 'State: '+"</b>"+this.state+"<br/>"+"<b>"+'Description: '
                 +"</b>"+this.description+"<br/>"+
                 '<button class="favorite" data-id='+this.id+'>Favorite This Hike</button>',
-        maxWidth: 150,
-
+        maxWidth: 200
       });
 
       google.maps.event.addListener(marker, 'click', function(){
@@ -54,9 +52,9 @@ function initialize() {
       //   infowindow.close();
       // });
 
-    })
-  })
-} // initialize
+    });
+  });
+}; // initialize
 
 
 google.maps.event.addDomListener(window, 'load', initialize);

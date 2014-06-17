@@ -47,6 +47,18 @@ function addFavorite(){
         data: {id: id},
         success: function(data){
           $(event.target).remove();
+        },
+        error: function(){
+          $("main").css("opacity", ".2");
+          $("nav").css("padding", "2%");
+          $(".title").after("<p class='error'>*You must login/signup first</p>");
+          $(".error").css("color", "#000").css("text-align", "center").css("margin", "0 auto");
+          // $(".login, .signup").css("color", "red").css("font-size", "200%");
+          $("main").on("click", function(){
+            $("main").css("opacity", "1");
+            $("nav").css("padding", "0");
+            $(".error").remove();
+          })
         }
       })
     })
