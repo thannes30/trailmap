@@ -10,7 +10,6 @@ function initialize() {
     center: centerOfUS
   };
 
-
   var image = {
     url: 'assets/hiker-small.png',
   }
@@ -40,19 +39,12 @@ function initialize() {
                 +"</b>"+this.description+"<br/>"+
                 '<button class="favorite" data-id='+this.id+'>Favorite This Hike</button>',
         maxWidth: 150,
-
       });
 
       google.maps.event.addListener(marker, 'click', function(){
         infowindow.open(map, this, addFavorite);
         addFavorite();
       });
-
-      // "<button onclick="myFunction()"> 'Click me'</button>"
-
-      // google.maps.event.addListener(marker, 'click', function() {
-      //   infowindow.close();
-      // });
 
     })
   })

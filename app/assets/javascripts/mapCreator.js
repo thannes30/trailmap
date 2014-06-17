@@ -54,9 +54,17 @@ function initialize() {
 
 
   $("li").on("click", function(event) {
+    $('.trail-info').html('')
 
     var myTrail = $(this).data('coords');
 
+    var trailTitle = $(this).data('title');
+    var trailState = $(this).data('state');
+    var trailDescription = $(this).data('description');
+
+    $('.trail-info').append("<li><b>Title:</b>"+trailTitle+"</li>")
+    $('.trail-info').append("<li><b>State:</b>"+trailState+"</li>")
+    $('.trail-info').append("<li><b>Description:</b>"+trailDescription+"</li>")
 
     $(markers).each(function(i, val){
       val.setMap(null);
