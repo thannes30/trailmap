@@ -3,11 +3,12 @@
 
 <h1>Create your trail</h1>
 
-<ul>
-<% @trail.each do |i| %>
-  <% if current_user.id == i.creator %>
-    <li><%= i.title %></li>
-  <% end %>
+
+<ul class='trails'>
+<% @trails.each do |trail| %>
+  <li class='trail' data-coords='<%= trail.coords.to_json %>'>
+    <%= trail.title %>
+  </li>
 <% end %>
 </ul>
 

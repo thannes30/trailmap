@@ -23,7 +23,7 @@ function initialize() {
   var polyOptions = {
     strokeColor: '#000000',
     strokeOpacity: 1.0,
-    strokeWeight: 3
+    strokeWeight: 3,
   };
   poly = new google.maps.Polyline(polyOptions);
   poly.setMap(map);
@@ -48,11 +48,33 @@ function initialize() {
     });
   });
 
-  $("li").on("click", function(e) {
-    console.log("works");
-    var getTrails = new TrailCollection;
-    getTrails.fetch();
-    console.log(getTrails.trails);
+  $("li").on("click", function() {    
+    var myTrail = $(this).data('coords');
+
+    var markerArray = [myTrail[0], myTrail[myTrail.length-1]];
+    $(markerArray).each(function(array) {
+      var eachMarker = new google.maps.LatLng(markerArray[array][0], markerArray[array][1]);
+      console.log(eachMarker);
+      var trailMarker = new google.maps.Marker({
+        position: eachMarker,
+        map: map
+      })
+    })
+
+    var allCoords = [];
+    $(myTrail).each(function(array) {
+      var findTrail = myTrail[array];
+      var trailPosition = new google.maps.LatLng(findTrail[0], findTrail[1]);
+      // console.log(trailPosition);
+      allCoords.push(trailPosition);
+    })
+    var append = new google.maps.Polyline({
+      path: allCoords,
+      strokeColor: '#f00',
+      strokeOpacity: .7,
+      strokeWeight: 5
+    })
+    append.setMap(map);
   })
 } // initialize
 
@@ -79,16 +101,11 @@ function addLatLng(event) {
 
 google.maps.event.addDomListener(window, 'load', initialize);
 
-function makeTrail() {
-  var object = {};
+function makeTrail(){
+  var object = {}
   object['title'] = $('.create-trail-title').val();
   object['description'] = $('.create-trail-description').val();
   object['state'] = $('.create-trail-state').val();
-  object['creator'] = $('.current-user-id').val();
   object['coords'] = newTrailCoords;
   return object;
-}
-
-function displayTrails() {
-
 }
