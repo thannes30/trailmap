@@ -47,8 +47,24 @@ function initialize() {
     });
   });
 
-  $("li").on("click", function() {    
+  // var append = false;
+
+  var markers = []
+  var trails = []
+
+
+  $("li").on("click", function() {
+
     var myTrail = $(this).data('coords');
+
+
+    $(markers).each(function(i, val){
+      val.setMap(null);
+    })
+
+    $(trails).each(function(i,val){
+      val.setMap(null);
+    })
 
     var markerArray = [myTrail[0], myTrail[myTrail.length-1]];
     $(markerArray).each(function(array) {
@@ -57,6 +73,7 @@ function initialize() {
         position: eachMarker,
         map: map
       })
+      markers.push(trailMarker)
     })
 
     var allCoords = [];
@@ -73,6 +90,7 @@ function initialize() {
       strokeWeight: 5
     })
     append.setMap(map);
+    trails.push(append)
   })
 } // initialize
 
