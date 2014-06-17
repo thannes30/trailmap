@@ -52,15 +52,3 @@ function getNotes(){
   })
 }
 
-// NoteCollection.prototype.post(trailId){
-//   return $.ajax({
-//     url: '/notes',
-//     method: 'get',
-//     dataType: 'json',
-//     data: {trailId: trailId},
-//     success: function(data){
-//       $('.notes').append('<li>''</li>')
-//     }
-//   })
-// }
-
