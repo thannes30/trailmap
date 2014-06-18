@@ -14,5 +14,5 @@
 //= require nav
 //= require trail
 //= require favorites
-
+//= require note
 

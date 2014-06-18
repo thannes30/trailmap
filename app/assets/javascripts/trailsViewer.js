@@ -36,8 +36,7 @@ function initialize() {
         content:"<b>"+'Title: '+"</b>"+this.title+"<br/>"+"<b>"+
                 'State: '+"</b>"+this.state+"<br/>"+"<b>"+'Description: '
                 +"</b>"+this.description+"<br/>"+
-                thisHikeNotAFavoriteOfUser() ? '<button class="favorite" data-id='+this.id+'>Favorite This Hike</button>' : "",
-        maxWidth: 200
+                '<button class="favorite" data-id='+this.id+'>Favorite This Hike</button>',
       });
 
       google.maps.event.addListener(marker, 'click', function(){

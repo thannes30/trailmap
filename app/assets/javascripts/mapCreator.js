@@ -11,6 +11,7 @@ var poly;
 var map;
 
 function initialize() {
+  $('#create-trail-form-div').hide()
   var mapOptions = {
     zoom: 4,
     // Center the map on Chicago, USA.
@@ -20,51 +21,118 @@ function initialize() {
 
   map = new google.maps.Map(document.getElementById('map-trail'), mapOptions);
 
+  /////// Uncomment this section to restore line drawing to the map//////////////
+  ////// This bit of code seems to style the line that will be drawn
+  // var polyOptions = {
+  //   strokeColor: '#000000',
+  //   strokeOpacity: 1.0,
+  //   strokeWeight: 3,
+  // };
+  ////////This bit of code seems to turn on the line drawing
+  // poly = new google.maps.Polyline(polyOptions);
+  // trails.push(poly)
+  // poly.setMap(map);
+  // google.maps.event.addListener(map, 'click', addLatLng);
+
+  setEventHandlers()
+
+} // initialize
+
+/**
+ * Handles click events on a map, and adds a new point to the Polyline.
+ * @param {google.maps.MouseEvent} event
+ */
   var polyOptions = {
     strokeColor: '#000000',
     strokeOpacity: 1.0,
     strokeWeight: 3,
   };
+
+
+function setTrailDrawing(){
   poly = new google.maps.Polyline(polyOptions);
+  trails.push(poly)
   poly.setMap(map);
-
-  // Add a listener for the click event
   google.maps.event.addListener(map, 'click', addLatLng);
+}
 
-  $('.create-trail-button').on('click', function(e) {
-    e.preventDefault();
-    var newTrail = makeTrail();
-    var currentUserId = $('.current-user-id').val();
-    // console.log(newTrail);
-    $.ajax({
-      url: '/trails',
-      method: 'post',
-      dataType: 'json',
-      data: {trail: newTrail},
-      success: function(data) {
-        console.log(data);
-      }
-    });
+
+function addLatLng(event) {
+
+  var path = poly.getPath();
+  lichard = path
+
+  // Because path is an MVCArray, we can simply append a new coordinate
+  // and it will automatically appear.
+  path.push(event.latLng);
+  trailCoords(event.latLng['k'], event.latLng['A']);
+  // Add a new marker at the new plotted point on the polyline.
+  var marker = new google.maps.Marker({
+    position: event.latLng,
+    title: '#' + path.getLength(),
+    map: map
   });
+  markers.push(marker)
+}
 
-  // var append = false;
+google.maps.event.addDomListener(window, 'load', initialize);
 
-  var markers = []
-  var trails = []
+function makeTrail(){
+  var object = {}
+  object['title'] = $('.create-trail-title').val();
+  object['description'] = $('.create-trail-description').val();
+  object['state'] = $('.create-trail-state').val();
+  object['coords'] = newTrailCoords;
+  return object;
+}
+
+function setEventHandlers(){
+    liClick()
+    createTrailClick()
+    trailFormClick()
+    clearButtonClick()
+}
+
+var markers = []
+var trails = []
+
+function removeFromMap(things){
+  $(things).each(function(i, val){
+    val.setMap(null);
+  })
+}
+
+function clearMap(){
+    removeFromMap(markers)
+    removeFromMap(trails)
+}
 
 
-  $("li").on("click", function(event) {
+//hide add notes h2 and input form
+ $('.add-notes-here').hide();
+ $('.add-notes').hide();
+
+function liClick(){
+    $(".trail").on("click", function(event) {
+    $('.trail-info').html('');
+    $('.add-notes-here').show();
+    $('.add-notes').show();
+    $('#create-trail-form-div').hide()
+
 
     var myTrail = $(this).data('coords');
+    var trailTitle = $(this).data('title');
+    var trailState = $(this).data('state');
+    var trailDescription = $(this).data('description');
+    var trailId = $(this).data('trail-id');
 
+    $('.trail-info').append("<li><b>Title:</b>"+trailTitle+"</li>")
+    $('.trail-info').append("<li><b>State:</b>"+trailState+"</li>")
+    $('.trail-info').append("<li><b>Description:</b>"+trailDescription+"</li>")
+    $('.trail-info').attr('data-trail-id', trailId)
 
-    $(markers).each(function(i, val){
-      val.setMap(null);
-    })
-
-    $(trails).each(function(i,val){
-      val.setMap(null);
-    })
+    clearMap()
+    getNotes()
 
     var markerArray = [myTrail[0], myTrail[myTrail.length-1]];
     $(markerArray).each(function(array) {
@@ -92,39 +160,67 @@ function initialize() {
     })
     append.setMap(map);
     trails.push(append)
+    })
+}
 
-    lichard = event.target
-  })
-} // initialize
-
-/**
- * Handles click events on a map, and adds a new point to the Polyline.
- * @param {google.maps.MouseEvent} event
- */
-function addLatLng(event) {
-
-  var path = poly.getPath();
-
-  // Because path is an MVCArray, we can simply append a new coordinate
-  // and it will automatically appear.
-  path.push(event.latLng);
-  lichard = event.latLng;
-  trailCoords(event.latLng['k'], event.latLng['A']);
-  // Add a new marker at the new plotted point on the polyline.
-  var marker = new google.maps.Marker({
-    position: event.latLng,
-    title: '#' + path.getLength(),
-    map: map
+function createTrailClick(){
+  $('.create-trail-button').on('click', function(e) {
+    e.preventDefault();
+    var newTrail = makeTrail();
+    var currentUserId = $('.current-user-id').val();
+    // console.log(newTrail);
+    $.ajax({
+      url: '/trails',
+      method: 'post',
+      dataType: 'json',
+      data: {trail: newTrail},
+      success: function(data) {
+        var listTrail = new TrailModel(data)
+        lichard = listTrail
+        if (listTrail.id != null) {
+          var newLi = $('<li>')
+          newLi.attr('class', 'trail').attr('data-trail-id', listTrail.id).attr('data-state', listTrail.state).attr('data-title', listTrail.title).data('coords', listTrail.coords).attr('data-description', listTrail.description).text(listTrail.title)
+          $('.trails').append(newLi)
+          liClick()
+          clearMap()
+          clearFields()
+          $('#create-trail-form-div').hide()
+          alert('You have successfully created a trail! check out your list to review/make notes!')
+        } else {
+        alert('YouYour trail was not created! Fill out all fields and draw a trail to make one!')
+        }
+      }
+    });
   });
 }
 
-google.maps.event.addDomListener(window, 'load', initialize);
-
-function makeTrail(){
-  var object = {}
-  object['title'] = $('.create-trail-title').val();
-  object['description'] = $('.create-trail-description').val();
-  object['state'] = $('.create-trail-state').val();
-  object['coords'] = newTrailCoords;
-  return object;
+// function clearFields(){
+//   $('.create-trail-title').html('')
+//   $('.create-trail-state').html('')
+//   $('.create-trail-description').html('')
+// }
+function clearFields(){
+  $('.create-trail-title').val('')
+  $('.create-trail-state').val('')
+  $('.create-trail-description').val('')
 }
+
+function trailFormClick(){
+  $('.trail-form-button').on('click', function(){
+      setTrailDrawing()
+      newTrailCoords = []
+     $('.add-notes-here').hide();
+     $('.add-notes').hide();
+     clearMap()
+    $('#create-trail-form-div').show()
+  })
+}
+
+function clearButtonClick(){
+  $('.clear-button').on('click', function(){
+    newTrailCoords = []
+    clearMap()
+    clearFields()
+  })
+}
+

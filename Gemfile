@@ -34,7 +34,7 @@ group :development, :test do
   gem 'jasmine'
 end
 
-gem 'rails_12factor'
+gem 'rails_12factor',       group: :production
 gem 'sorcery'
 
 # Use ActiveModel has_secure_password

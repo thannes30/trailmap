@@ -13,4 +13,7 @@ Rails.application.routes.draw do
   get '/trails' => 'trails#index'
   post '/trails/favorite' => 'trails#favorite'
 
+  post '/notes' => 'notes#create'
+  get '/notes' => 'notes#index'
+
 end

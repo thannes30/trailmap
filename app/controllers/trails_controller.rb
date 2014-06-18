@@ -19,6 +19,7 @@ class TrailsController < ApplicationController
 
   def create
     trail = Trail.create(trail_params)
+    ### trail does not have a user id before being created... this gives it one.
     current_user.trails << trail
     render :json => trail.to_json
   end
