@@ -10,7 +10,7 @@ function initialize() {
   };
 
   var image = {
-    url: 'assets/hiker-small.png',
+    url: 'assets/images/hiker-small.png',
   };
 
   map = new google.maps.Map(document.getElementById('main-map'),
@@ -47,7 +47,7 @@ function initialize() {
   function thisHikeNotAFavoriteOfUser(){
     //get all favorites from database
     var allFaves = new FavoriteCollection();
-    //iterate on all faves 
+    //iterate on all faves
     allFaves.fetch(function() {
       $.each(allFaves.favorites, function(fav) {
         //return false if hike.id == hike_from_databse.id
