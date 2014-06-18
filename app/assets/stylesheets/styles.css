@@ -200,7 +200,6 @@ nav h1, h3, p {
   border: solid 1px black;
   float:left;
   width:25%;
-  min-height:;
   display:inline-block;
   height:600px;
   overflow:scroll;
