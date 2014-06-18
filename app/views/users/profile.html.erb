@@ -24,11 +24,11 @@
 <h2>Trail info</h2>
 <ul class="trail-info"></ul>
 
-<h2>Trail Notes</h2>
+<h2 class="add-notes-here">Trail Notes</h2>
 <ul class="notes">
 </ul>
 
-<form action="/notes" method="post" id="create-note-form">
+<form action="/notes" method="post" id="create-note-form" class="add-notes">
   <%= token_tag %>
   <input type="text" class="add-note" placeholder="Enter Note" name="note[message]">
   <input type="hidden" name="note[trail_id]" class="note-trail-id" value=''>

@@ -28,6 +28,7 @@ $('#create-note-form').on('submit', function(e){
         getNotes()
         // var note = new NoteModel(data);
         // this.note[note.id] = note;
+        $('.add-note').val('')
       }
     })
   }

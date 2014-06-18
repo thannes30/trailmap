@@ -82,9 +82,16 @@ function removeFromMap(things){
   })
 }
 
+//hide add notes h2 and input form
+ $('.add-notes-here').hide();
+ $('.add-notes').hide();
+
 function liClick(){
     $("li").on("click", function(event) {
-    $('.trail-info').html('')
+    $('.trail-info').html('');
+    $('.add-notes-here').show();
+    $('.add-notes').show();
+
 
     var myTrail = $(this).data('coords');
 
@@ -156,8 +163,13 @@ function createTrailClick(){
   });
 }
 
+// function clearFields(){
+//   $('.create-trail-title').html('')
+//   $('.create-trail-state').html('')
+//   $('.create-trail-description').html('')
+// }
 function clearFields(){
-  $('.create-trail-title').html('')
-  $('.create-trail-state').html('')
-  $('.create-trail-description').html('')
+  $('.create-trail-title').val('')
+  $('.create-trail-state').val('')
+  $('.create-trail-description').val('')
 }
