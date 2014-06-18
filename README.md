@@ -1,6 +1,9 @@
 <h1>Welcome to Trail Map brought to you by TAJ team (Tim-Aziz-John)</h1>
 <h2>Trail Map empowers you to visually track and manage your outdoor activity, e.g hiking, biking and etc.</h2>
 
+<p>Here is a quick wireframe sketch of what we pictured Trail Map looking like after 7 days of work.</p>
+![Alt text](app/assets/images/trailmap_wireframe.jpg?raw=true)
+
 <ul>
 <li>Create and share unlimited custom trails</li>
 <li>Save and rate trails created by other users</li>
