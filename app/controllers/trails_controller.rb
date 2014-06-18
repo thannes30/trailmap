@@ -2,7 +2,8 @@ class TrailsController < ApplicationController
 
   def index
     @trails = Trail.all
-    render :json => @trails.to_json
+    render :json => @trails.to_json(include: :favorites)
+    # render :json => @trails.to_json
   end
 
   def new

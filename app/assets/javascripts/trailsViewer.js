@@ -32,11 +32,25 @@ function initialize() {
         position: hikeCoords
       });
 
+      // var content = function() {
+      //   if(wasntFavorited(id)) {
+      //     "<b>"+'Title: '+"</b>"+this.title+"<br/>"+"<b>"+
+      //     'State: '+"</b>"+this.state+"<br/>"+"<b>"+'Description: '
+      //     +"</b>"+this.description+"<br/>"
+      //   }
+      //   else {
+      //     "<b>"+'Title: '+"</b>"+this.title+"<br/>"+"<b>"+
+      //     'State: '+"</b>"+this.state+"<br/>"+"<b>"+'Description: '
+      //     +"</b>"+this.description+"<br/>"+
+      //     '<button class="favorite" data-id='+this.id+'>Favorite This Hike</button>'
+      //   }
+      // }
+
       var infowindow = new google.maps.InfoWindow({
-        content:"<b>"+'Title: '+"</b>"+this.title+"<br/>"+"<b>"+
-                'State: '+"</b>"+this.state+"<br/>"+"<b>"+'Description: '
-                +"</b>"+this.description+"<br/>"+
-                '<button class="favorite" data-id='+this.id+'>Favorite This Hike</button>',
+        content: "<b>"+'Title: '+"</b>"+this.title+"<br/>"+"<b>"+
+          'State: '+"</b>"+this.state+"<br/>"+"<b>"+'Description: '
+          +"</b>"+this.description+"<br/>"+
+          '<button class="favorite" data-id='+this.id+'>Favorite This Hike</button>'
       });
 
       google.maps.event.addListener(marker, 'click', function(){
@@ -44,24 +58,21 @@ function initialize() {
         addFavorite();
       });
 
-  function thisHikeNotAFavoriteOfUser(){
-    //get all favorites from database
-    var allFaves = new FavoriteCollection();
-    //iterate on all faves 
-    allFaves.fetch(function() {
-      $.each(allFaves.favorites, function(fav) {
-        //return false if hike.id == hike_from_databse.id
-        if(this.id == fav.id) {
-          return true;
-        }
-      })
-    })
-  }
-
-    });
-    // $("#main-map").on("click", function(){
-    //   console.log("hi");
-    // });
+    // function wasntFavorited(trailId){
+    //   //get all favorites from database
+    //   var allFaves = new FavoriteCollection();
+    //   //iterate on all faves 
+    //   allFaves.fetch()
+    //   $.each(allFaves.favorites, function(index, favorite) {
+    //       //return false if hike.id == hike_from_databse.id
+    //       if(trailId == favorite.trail_id) {
+    //         return false;
+    //       } else {
+    //         return true
+    //       }
+    //   })
+    // }
+  });
   });
 }; // initialize
 
