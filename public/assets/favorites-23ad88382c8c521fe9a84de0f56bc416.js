@@ -1,1 +1,0 @@
-function FavoriteModel(i){this.user_id=i.user_id,this.trail_id=i.trail_id}function FavoriteView(i){this.model=i,this.el=void 0}function FavoriteCollection(){this.favorites={}}FavoriteCollection.prototype.fetch=function(){var i=this;$.ajax({url:"/trails",method:"get",dataType:"json",success:function(t){$.each(t,function(t,o){var e=new FavoriteModel(o);i.favorites[e.id]=e})}})};
