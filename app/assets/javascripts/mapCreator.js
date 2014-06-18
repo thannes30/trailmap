@@ -21,17 +21,18 @@ function initialize() {
 
   map = new google.maps.Map(document.getElementById('map-trail'), mapOptions);
 
-  var polyOptions = {
-    strokeColor: '#000000',
-    strokeOpacity: 1.0,
-    strokeWeight: 3,
-  };
-  poly = new google.maps.Polyline(polyOptions);
-  trails.push(poly)
-  poly.setMap(map);
-
-  // Add a listener for the click event
-  google.maps.event.addListener(map, 'click', addLatLng);
+  /////// Uncomment this section to restore line drawing to the map//////////////
+  ////// This bit of code seems to style the line that will be drawn
+  // var polyOptions = {
+  //   strokeColor: '#000000',
+  //   strokeOpacity: 1.0,
+  //   strokeWeight: 3,
+  // };
+  ////////This bit of code seems to turn on the line drawing
+  // poly = new google.maps.Polyline(polyOptions);
+  // trails.push(poly)
+  // poly.setMap(map);
+  // google.maps.event.addListener(map, 'click', addLatLng);
 
   setEventHandlers()
 
@@ -41,9 +42,25 @@ function initialize() {
  * Handles click events on a map, and adds a new point to the Polyline.
  * @param {google.maps.MouseEvent} event
  */
+  var polyOptions = {
+    strokeColor: '#000000',
+    strokeOpacity: 1.0,
+    strokeWeight: 3,
+  };
+
+
+function setTrailDrawing(){
+  poly = new google.maps.Polyline(polyOptions);
+  trails.push(poly)
+  poly.setMap(map);
+  google.maps.event.addListener(map, 'click', addLatLng);
+}
+
+
 function addLatLng(event) {
 
   var path = poly.getPath();
+  lichard = path
 
   // Because path is an MVCArray, we can simply append a new coordinate
   // and it will automatically appear.
@@ -190,6 +207,7 @@ function clearFields(){
 
 function trailFormClick(){
   $('.trail-form-button').on('click', function(){
+      setTrailDrawing()
       newTrailCoords = []
      $('.add-notes-here').hide();
      $('.add-notes').hide();
