@@ -16,9 +16,7 @@ class UsersController < ApplicationController
   end
 
   def profile
-    @trail = Trail.all
     @trails = current_user.trails
-    @favorite = Favorite.all
     @favorites = current_user.favorites
   end
 
