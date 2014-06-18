@@ -1,11 +1,10 @@
 
-<!-- <h4>Welcome back <%=current_user.username%></h4>
- -->
 <div class="profile-container">
-  <div class="mytrails">
+
+  <div class="trails-div">
     <h3>My trails</h3>
 
-    <ul class='trails'>
+    <ul class='trails-ul'>
     <% @trails.each do |trail| %>
       <li class='trail' data-trail-id='<%=trail.id.to_json %>' data-coords='<%= trail.coords.to_json %>' data-title='<%= trail.title.to_json %>' data-state='<%= trail.state.to_json %>' data-description='<%= trail.description.to_json %>'>
         <%= trail.title %>
@@ -15,7 +14,7 @@
 
     <h3>Favorite trails</h3>
 
-    <ul class="favorites">
+    <ul class="favorites-ul">
     <% @favorites.each do |favorite| %>
       <li id='favorite' class='trail' data-trail-id='<%=favorite.id.to_json %>' data-coords='<%= favorite.trail.coords.to_json %>' data-title='<%= favorite.trail.title.to_json %>' data-state='<%= favorite.trail.state.to_json %>' data-description='<%= favorite.trail.description.to_json %>'>
         <%= favorite.trail.title %>, <%= favorite.user.username %>
@@ -23,33 +22,35 @@
     <% end %>
     </ul>
 
-    <!-- <h2>Trail info</h2>
-    <ul class="trail-info"></ul> -->
+  </div>  <!-- .trails-div -->
+
+  <div class="notes-div">
+  
+    <button class="create-trail-button">Create a Trail</button>
 
     <h3 class="add-notes-here">Trail Notes</h3>
 
-    <form action="/notes" method="post" id="create-note-form" class="add-notes">
+    <ul class="notes-ul"></ul>
+
+    <form action="/notes" method="post" class="add-notes-form">
       <%= token_tag %>
-      <input type="text" class="add-note" placeholder="Enter Note" name="note[message]">
-      <input type="hidden" name="note[trail_id]" class="note-trail-id" value=''>
+      <input class="note-form-input" type="text" placeholder="Enter Note" name="note[message]">
+      <input class="note-form-hidden" type="hidden" name="note[trail_id]" value=''>
       <button class='create-note-button'>Add Note</button>
     </form>
 
-    <ul class="notes">
-    </ul>
-  </div>
+  </div>  <!-- .notes-div -->
 
-  <div class="create-trail-map">
-<!--     <h2>Your Trail Map</h2>
- -->    <button class="trail-form-button">Create a Trail</button>
+
+  <div class="profile-page-map">
 
     <div class="trailinfo">
       <h4>Trail info</h4>
-      <ul class="trail-info"></ul>
+      <ul class="trailinfo-ul"></ul>
     </div>
 
-    <div id="map-trail">
-    </div>
+    <div id="map-trail"></div>
+
     <div id="create-trail-form-div">
       <form action="/trails" method="post" id="create-trail-form">
         <%= token_tag %>
@@ -59,14 +60,13 @@
         <input class="current-user-id" type="hidden" value="<%=current_user.id%>">
       <button class='create-trail-button'>Create Trail</button>
       </form>
-      <button class="clear-button">Clear Fields</button>
+      <button class="clear-fields-button">Clear Fields</button>
     </div>
-  </div>
-</div>
 
+  </div>  <!-- .profile-page-map -->
 
-<!-- <footer></footer>
- -->
+</div>  <!-- .profile-container -->
+
 <% content_for :custom_javascript do %>
   <%= javascript_include_tag 'mapCreator'%>
 <% end %>

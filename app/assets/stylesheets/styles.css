@@ -17,7 +17,7 @@ nav {
   font-family: helvetica;
 }
 
-nav h1, h3, p {
+nav, h1, h3, p {
   margin: 0;
   padding: 0;
 }
@@ -177,7 +177,6 @@ nav h1, h3, p {
 
 /*profile page container*/
 .profile-container{
-  border: solid 1px black;
   width:76%;
   position:absolute;
   left:12%;
@@ -188,30 +187,27 @@ nav h1, h3, p {
 
 /*profile page map*/
 #map-trail {
-  height: 70%;
-  width: 70%;
-  position:absolute;
-  margin-top:10%;
+  height: 100%;
+  width: inherit;
+  margin: 3% auto;
+  position: absolute;
   border: solid black 1px;
 }
 
 /*left div of trails in container*/
-.mytrails{
-  border: solid 1px black;
-  float:left;
-  width:25%;
-  min-height:;
-  display:inline-block;
-  height:600px;
-  overflow:scroll;
+.trails-div{
+  border: 1px solid red;
+  float: left;
+  width: 20%;
+  display: inline-block;
+  /*height: 600px;*/
+  overflow: scroll;
 }
 
 /*larger right div of map in container*/
-.create-trail-map{
-  border: solid 1px black;
-  float:right;
-  width:70%;
-  display:inline-block;
+.profile-page-map {
+  width: 58%;
+  margin: 0 auto;
 }
 
 /*create trail button*/
@@ -221,13 +217,12 @@ nav h1, h3, p {
 
 /*trailinfo div*/
 .trailinfo{
-  float:right;
-  margin-top:-15px;
-  width:250px;
+  border: 1px solid green;
 }
-
-/*trailinfo ul*/
-.trail-info{
+.trailinfo h4 {
+  margin: 0 auto;
+}
+.trailinfo-ul{
   margin-top:-20px;
 }
 
@@ -237,19 +232,11 @@ nav h1, h3, p {
   bottom:0;
 }
 
-/*trailnotes notes li*/
-.notes{
-
+.notes-div {
+  border: 1px solid blue;
+  float: right;
+  width: 20%;
 }
-
-
-
-
-
-
-
-
-
 
 footer{
   width: 100%;
@@ -258,4 +245,16 @@ footer{
   bottom: 0;
   margin-top:20px;
   background-color: green;
+}
+
+
+
+
+li {
+  list-style: none;
+  padding: 0;
+  margin: 1%;
+}
+.trails-ul li, .favorites-ul li {
+  cursor: pointer;  
 }
