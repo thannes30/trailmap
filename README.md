@@ -1,5 +1,5 @@
 <h1>Welcome to Trail Map brought to you by TAJ team (Tim-Aziz-John)</h1>
-<h2>Trail Map empowers you to visually track and manage your outdoor activity, e.g hiking, biking and etc.</h2>
+<h2>Trail Map empowers you to visually track and manage your outdoor hiking activities.</h2>
 
 
 <ul>
