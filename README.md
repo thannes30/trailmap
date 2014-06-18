@@ -11,10 +11,11 @@
 </ul>
 
 <p>Here is a quick wireframe sketch drawn on day 1 of what we envisioned Trail Map looking like after 7 days of work.</p>
-![Alt text](app/assets/images/trailmap_wireframe.jpg?raw=true)
+![wireframe](app/assets/images/trailmap_wireframe.jpg?raw=true)
 
 <p>Here is our data model which establishes the data relationships in our database</p>
-![Alt text](app/assets/images/data-models.png?raw=true)
+![data model](app/assets/images/data-models.png?raw=true)
+
 
 <h4>Our web app is built using Ruby on Rails 4 and the Google Maps API V3.</h4>
 <h4>Visit us at <a href="http://trailmap.herokuapp.com/">trailmap.herokuapp.com</a></h4>
