@@ -56,11 +56,14 @@ function setTrailDrawing(){
   google.maps.event.addListener(map, 'click', addLatLng);
 }
 
+function removeTrailDrawing(){
+  google.maps.event.clearListeners(map, 'click');
+}
+
 
 function addLatLng(event) {
 
   var path = poly.getPath();
-  lichard = path
 
   // Because path is an MVCArray, we can simply append a new coordinate
   // and it will automatically appear.
@@ -71,8 +74,12 @@ function addLatLng(event) {
     position: event.latLng,
     title: '#' + path.getLength(),
     map: map
+
+
+
   });
   markers.push(marker)
+  drawTrail()
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
@@ -176,15 +183,16 @@ function createTrailClick(){
       data: {trail: newTrail},
       success: function(data) {
         var listTrail = new TrailModel(data)
-        lichard = listTrail
         if (listTrail.id != null) {
           var newLi = $('<li>')
           newLi.attr('class', 'trail').attr('data-trail-id', listTrail.id).attr('data-state', listTrail.state).attr('data-title', listTrail.title).data('coords', listTrail.coords).attr('data-description', listTrail.description).text(listTrail.title)
           $('.trails').append(newLi)
+          newTrailCoords = []
           liClick()
           clearMap()
           clearFields()
           $('#create-trail-form-div').hide()
+          removeTrailDrawing()
           alert('You have successfully created a trail! check out your list to review/make notes!')
         } else {
         alert('YouYour trail was not created! Fill out all fields and draw a trail to make one!')
@@ -224,3 +232,20 @@ function clearButtonClick(){
   })
 }
 
+function drawTrail(){
+  var allLatLong = []
+    $(newTrailCoords).each(function(index, value) {
+      var trailPosition = new google.maps.LatLng(value[0], value[1]);
+      // console.log(trailPosition);
+      allLatLong.push(trailPosition);
+    })
+    var append = new google.maps.Polyline({
+      path: allLatLong,
+      strokeColor: '#f00',
+      strokeOpacity: .7,
+      strokeWeight: 5
+  })
+  trails.push(append)
+  removeFromMap(trails)
+  append.setMap(map);
+}
