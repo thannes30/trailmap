@@ -16,6 +16,4 @@ Rails.application.routes.draw do
   post '/notes' => 'notes#create'
   get '/notes' => 'notes#index'
 
-  image_url('hiker-small.png')
-
 end

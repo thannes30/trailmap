@@ -10,7 +10,7 @@ function initialize() {
   };
 
   var image = {
-    url: 'assets/hiker-small.png',
+    url: image_path('hiker-small.png'),
   };
 
   map = new google.maps.Map(document.getElementById('main-map'),
