@@ -15,7 +15,7 @@
 
 <ul class="favorites">
 <% @favorites.each do |favorite| %>
-  <li id='favorite' data-trail-id='<%=favorite.id.to_json %>' data-coords='<%= favorite.trail.coords.to_json %>' data-title='<%= favorite.trail.title.to_json %>' data-state='<%= favorite.trail.state.to_json %>' data-description='<%= favorite.trail.description.to_json %>'>
+  <li id='favorite' class='trail' data-trail-id='<%=favorite.id.to_json %>' data-coords='<%= favorite.trail.coords.to_json %>' data-title='<%= favorite.trail.title.to_json %>' data-state='<%= favorite.trail.state.to_json %>' data-description='<%= favorite.trail.description.to_json %>'>
     <%= favorite.trail.title %>, <%= favorite.user.username %>
   </li>
 <% end %>
@@ -35,19 +35,21 @@
   <button class='create-note-button'>Add Note</button>
 </form>
 
-<h2>Create your trail</h2>
+<h2>Your Trail Map</h2>
+<button class="trail-form-button">Create a Trail</button>
 <div id="map-trail">
 </div>
-
-<form action="/trails" method="post" id="create-trail-form">
-  <%= token_tag %>
-  <input class='create-trail-title' type="text" name="trail[title]" placeholder="Title">
-  <input class='create-trail-state' type="text" name="trail[state]" placeholder="State">
-  <input class='create-trail-description' type="text" name="trail[description]" placeholder="description">
-  <input class="current-user-id" type="hidden" value="<%=current_user.id%>">
+<div id="create-trail-form-div">
+  <form action="/trails" method="post" id="create-trail-form">
+    <%= token_tag %>
+    <input class='create-trail-title' type="text" name="trail[title]" placeholder="Title">
+    <input class='create-trail-state' type="text" name="trail[state]" placeholder="State">
+    <input class='create-trail-description' type="text" name="trail[description]" placeholder="description">
+    <input class="current-user-id" type="hidden" value="<%=current_user.id%>">
   <button class='create-trail-button'>Create Trail</button>
-
-</form>
+  </form>
+  <button class="clear-button">Clear Fields</button>
+</div>
 
 <% content_for :custom_javascript do %>
   <%= javascript_include_tag 'mapCreator'%>

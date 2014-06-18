@@ -11,6 +11,7 @@ var poly;
 var map;
 
 function initialize() {
+  $('#create-trail-form-div').hide()
   var mapOptions = {
     zoom: 4,
     // Center the map on Chicago, USA.
@@ -71,6 +72,8 @@ function makeTrail(){
 function setEventHandlers(){
     liClick()
     createTrailClick()
+    trailFormClick()
+    clearButtonClick()
 }
 
 var markers = []
@@ -82,19 +85,25 @@ function removeFromMap(things){
   })
 }
 
+function clearMap(){
+    removeFromMap(markers)
+    removeFromMap(trails)
+}
+
+
 //hide add notes h2 and input form
  $('.add-notes-here').hide();
  $('.add-notes').hide();
 
 function liClick(){
-    $("li").on("click", function(event) {
+    $(".trail").on("click", function(event) {
     $('.trail-info').html('');
     $('.add-notes-here').show();
     $('.add-notes').show();
+    $('#create-trail-form-div').hide()
 
 
     var myTrail = $(this).data('coords');
-
     var trailTitle = $(this).data('title');
     var trailState = $(this).data('state');
     var trailDescription = $(this).data('description');
@@ -104,9 +113,8 @@ function liClick(){
     $('.trail-info').append("<li><b>State:</b>"+trailState+"</li>")
     $('.trail-info').append("<li><b>Description:</b>"+trailDescription+"</li>")
     $('.trail-info').attr('data-trail-id', trailId)
-    removeFromMap(markers)
-    removeFromMap(trails)
 
+    clearMap()
     getNotes()
 
     var markerArray = [myTrail[0], myTrail[myTrail.length-1]];
@@ -151,13 +159,19 @@ function createTrailClick(){
       data: {trail: newTrail},
       success: function(data) {
         var listTrail = new TrailModel(data)
-        var newLi = $('<li>')
-        newLi.attr('class', 'trail').attr('data-trail-id', listTrail.id).attr('data-state', listTrail.state).attr('data-title', listTrail.title).attr('data-coords', listTrail.coords).attr('data-description', listTrail.description).text(listTrail.title)
-        $('.trails').append(newLi)
-        liClick()
-        // removeFromMap(markers)
-        // removeFromMap(trails)
-        clearFields()
+        lichard = listTrail
+        if (listTrail.id != null) {
+          var newLi = $('<li>')
+          newLi.attr('class', 'trail').attr('data-trail-id', listTrail.id).attr('data-state', listTrail.state).attr('data-title', listTrail.title).data('coords', listTrail.coords).attr('data-description', listTrail.description).text(listTrail.title)
+          $('.trails').append(newLi)
+          liClick()
+          clearMap()
+          clearFields()
+          $('#create-trail-form-div').hide()
+          alert('You have successfully created a trail! check out your list to review/make notes!')
+        } else {
+        alert('YouYour trail was not created! Fill out all fields and draw a trail to make one!')
+        }
       }
     });
   });
@@ -173,3 +187,22 @@ function clearFields(){
   $('.create-trail-state').val('')
   $('.create-trail-description').val('')
 }
+
+function trailFormClick(){
+  $('.trail-form-button').on('click', function(){
+      newTrailCoords = []
+     $('.add-notes-here').hide();
+     $('.add-notes').hide();
+     clearMap()
+    $('#create-trail-form-div').show()
+  })
+}
+
+function clearButtonClick(){
+  $('.clear-button').on('click', function(){
+    newTrailCoords = []
+    clearMap()
+    clearFields()
+  })
+}
+
