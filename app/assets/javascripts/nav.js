@@ -74,7 +74,7 @@ $(function(){
   })
 
     $('#user_password').on('keyup', function(){
-    if ($('#user_password').val().length > 5 && $('#user_password').val().length < 10) {
+    if ($('#user_password').val().length >= 5 && $('#user_password').val().length <= 10) {
       $('#user_password').css('border', 'solid lightgreen 3px')
     } else {
       $('#user_password').css('border', 'solid red 3px')
