@@ -1,5 +1,4 @@
 var centerOfUS = new google.maps.LatLng(39.8104, -96.5560);
-// var testHikeCoords = new google.maps.LatLng(41.0269, -74.1594);
 var marker;
 var map;
 
@@ -37,7 +36,7 @@ function initialize() {
         content:"<b>"+'Title: '+"</b>"+this.title+"<br/>"+"<b>"+
                 'State: '+"</b>"+this.state+"<br/>"+"<b>"+'Description: '
                 +"</b>"+this.description+"<br/>"+
-                '<button class="favorite" data-id='+this.id+'>Favorite This Hike</button>',
+                thisHikeNotAFavoriteOfUser() ? '<button class="favorite" data-id='+this.id+'>Favorite This Hike</button>' : "",
         maxWidth: 200
       });
 
@@ -46,13 +45,24 @@ function initialize() {
         addFavorite();
       });
 
-      // "<button onclick="myFunction()"> 'Click me'</button>"
-
-      // google.maps.event.addListener(marker, 'click', function() {
-      //   infowindow.close();
-      // });
+  function thisHikeNotAFavoriteOfUser(){
+    //get all favorites from database
+    var allFaves = new FavoriteCollection();
+    //iterate on all faves 
+    allFaves.fetch(function() {
+      $.each(allFaves.favorites, function(fav) {
+        //return false if hike.id == hike_from_databse.id
+        if(this.id == fav.id) {
+          return true;
+        }
+      })
+    })
+  }
 
     });
+    // $("#main-map").on("click", function(){
+    //   console.log("hi");
+    // });
   });
 }; // initialize
 
