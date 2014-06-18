@@ -46,7 +46,7 @@ function getNotes(){
     success: function(data){
       bod = data
       $(data).each(function(i, val){
-        var newNote = $('<li>').text(val.message)
+        var newNote = $('<li>').text(val.message + ' Created at: ' + val.created_at)
         $('.notes').append(newNote)
       })
     }
