@@ -12,16 +12,18 @@ function FavoriteCollection() {
   this.favorites = {};
 }
 
-FavoriteCollection.prototype.fetch = function(callback) {
+FavoriteCollection.prototype.fetch = function() {
   var that = this;
   $.ajax({
     url: "/trails",
     method: "get",
     dataType: "json",
     success: function(data) {
-      $.each(data, function(i, datum) {
-        var fav = new FavoriteModel(datum);
-        that.favorites[fav.id] = fav;
+      $.each(data, function(datum) {
+        $.each(data[datum].favorites, function(favDatum) {
+          console.log(data[datum].favorites[favDatum]);
+          return data[datum].favorites[favDatum];
+        })
       })
     }
   })

@@ -2,11 +2,15 @@ class TrailsController < ApplicationController
 
   def index
     @trails = Trail.all
-    render :json => @trails.to_json
+    render :json => @trails.to_json(include: :favorites)
+    # render :json => @trails.to_json
   end
 
-  def new
-
+  def create
+    trail = Trail.create(trail_params)
+    ### trail does not have a user id before being created... this gives it one.
+    current_user.trails << trail
+    render :json => trail.to_json
   end
 
   def favorite
@@ -17,19 +21,12 @@ class TrailsController < ApplicationController
     render :json => favorite.to_json
   end
 
-  def create
-    trail = Trail.create(trail_params)
-    ### trail does not have a user id before being created... this gives it one.
-    current_user.trails << trail
-    render :json => trail.to_json
-  end
-
   private
+
   def trail_params
     attributes = params.require(:trail).permit(:title, :description, :state)
     coordinates = {coords: arrayify(params.require(:trail).require(:coords))}
     attributes.merge(coordinates)
-
   end
 
   def arrayify(hash)
