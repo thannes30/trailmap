@@ -18,6 +18,10 @@ RSpec.describe WelcomeController, :type => :controller do
       it 'responds successfully' do
         expect(response.code).to eq('200')
       end
+
+      it 'assigns @user' do
+        expect(assigns[:user]).to be_instance_of(User)
+      end
     end
   end
 end

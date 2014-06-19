@@ -193,6 +193,7 @@ nav, h1, h3, p {
   margin: 3% auto;
   opacity: .6;
 }
+
 #map-trail:hover {
   opacity: 1;
 }
