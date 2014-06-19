@@ -246,6 +246,7 @@ button {
 .profile-container h3 {
   text-align: center;
   font-size: 1.8em;
+  color: #444;
 }
 #create-trail-form-div {
   margin-top: 3%;
