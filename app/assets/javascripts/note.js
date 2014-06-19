@@ -15,8 +15,8 @@ function NoteCollection(){
 
 $('#create-note-form').on('submit', function(e){
     e.preventDefault();
-    var message = $('.add-note').val();
-    var trail_id = $('.trail-info').attr('data-trail-id');
+    var message = $('.note-form-input').val();
+    var trail_id = $('.trailinfo-ul').attr('data-trail-id');
     var note = {message: message,
                 trail_id: trail_id}
     $.ajax({
@@ -28,7 +28,7 @@ $('#create-note-form').on('submit', function(e){
         getNotes()
         // var note = new NoteModel(data);
         // this.note[note.id] = note;
-        $('.add-note').val('')
+        $('.note-form-input').val('')
       }
     })
   }
@@ -36,8 +36,8 @@ $('#create-note-form').on('submit', function(e){
 
 
 function getNotes(){
-  $('.notes').html('')
-  var trailId = $('.trail-info').attr('data-trail-id')
+  $('.notes-ul').html('')
+  var trailId = $('.trailinfo-ul').attr('data-trail-id')
   $.ajax({
     url: '/notes',
     method: 'get',
@@ -46,8 +46,8 @@ function getNotes(){
     success: function(data){
       bod = data
       $(data).each(function(i, val){
-        var newNote = $('<li>').text(val.message + ' Created at: ' + val.created_at)
-        $('.notes').append(newNote)
+        var newNote = $('<li>').text(val.message)// + ' Created at: ' + val.created_at
+        $('.notes-ul').append(newNote)
       })
     }
   })

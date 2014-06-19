@@ -25,45 +25,46 @@
   </div>  <!-- .trails-div -->
 
   <div class="notes-div">
-  
-    <button class="create-trail-button">Create a Trail</button>
 
     <h3 class="add-notes-here">Trail Notes</h3>
 
     <ul class="notes-ul"></ul>
 
-    <form action="/notes" method="post" class="add-notes-form">
+    <form action="/notes" method="post" id="create-note-form" class="add-notes-form">
       <%= token_tag %>
-      <input class="note-form-input" type="text" placeholder="Enter Note" name="note[message]">
+      <textarea class="note-form-input" type="text" placeholder="Enter Note" name="note[message]"></textarea>
       <input class="note-form-hidden" type="hidden" name="note[trail_id]" value=''>
       <button class='create-note-button'>Add Note</button>
     </form>
 
   </div>  <!-- .notes-div -->
 
+  <div class="map-border-div">
+    <div class="profile-page-map">
 
-  <div class="profile-page-map">
+      <div class="trailinfo">
+        <h3>Trail info</h3>
+        <ul class="trailinfo-ul"></ul>
+      </div>
+    
+      <button class="create-trail-form-button">New Trail</button>
 
-    <div class="trailinfo">
-      <h4>Trail info</h4>
-      <ul class="trailinfo-ul"></ul>
-    </div>
+      <div id="create-trail-form-div">
+        <form action="/trails" method="post" id="create-trail-form">
+          <%= token_tag %>
+          <input class='create-trail-title' type="text" name="trail[title]" placeholder="Title">
+          <input class='create-trail-state' type="text" name="trail[state]" placeholder="State">
+          <textarea class='create-trail-description' type="text" name="trail[description]" placeholder="description"></textarea>
+          <input class="current-user-id" type="hidden" value="<%=current_user.id%>">
+          <button class='create-trail-button'>Create Trail</button>
+        </form>
+          <button class="clear-fields-button">Clear Fields</button>
+      </div>
 
-    <div id="map-trail"></div>
+      <div id="map-trail"></div>
 
-    <div id="create-trail-form-div">
-      <form action="/trails" method="post" id="create-trail-form">
-        <%= token_tag %>
-        <input class='create-trail-title' type="text" name="trail[title]" placeholder="Title">
-        <input class='create-trail-state' type="text" name="trail[state]" placeholder="State">
-        <input class='create-trail-description' type="text" name="trail[description]" placeholder="description">
-        <input class="current-user-id" type="hidden" value="<%=current_user.id%>">
-      <button class='create-trail-button'>Create Trail</button>
-      </form>
-      <button class="clear-fields-button">Clear Fields</button>
-    </div>
-
-  </div>  <!-- .profile-page-map -->
+    </div>  <!-- .profile-page-map -->
+  </div>
 
 </div>  <!-- .profile-container -->
 

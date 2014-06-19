@@ -7,6 +7,8 @@ body {
   height: 100%;
   width:100%;
   margin: 0;
+  background-color: #eee;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 nav {
@@ -185,45 +187,37 @@ nav, h1, h3, p {
   margin-top:3%;
 }
 
-/*profile page map*/
 #map-trail {
-  height: 100%;
-  width: inherit;
+  height: 30em;
+  /*width: inherit;*/
   margin: 3% auto;
-  position: absolute;
-  border: solid black 1px;
+  opacity: .6;
+}
+#map-trail:hover {
+  opacity: 1;
 }
 
 /*left div of trails in container*/
 .trails-div{
-  border: 1px solid red;
   float: left;
-  width: 20%;
+  width: 18%;
   display: inline-block;
   /*height: 600px;*/
   overflow: scroll;
 }
-
-/*larger right div of map in container*/
-.profile-page-map {
-  width: 58%;
+.map-border-div {
+  padding: 0 2%;
+  border-left: 5px solid #0e700e;
+  border-right: 5px solid #0e700e;
+  width: 55%;
   margin: 0 auto;
 }
 
-/*create trail button*/
-.create-trail-form-button{
-  display:inline-block;
-}
-
-/*trailinfo div*/
-.trailinfo{
-  border: 1px solid green;
+.trailinfo {
+  /*border: 1px solid red;*/
 }
 .trailinfo h4 {
   margin: 0 auto;
-}
-.trailinfo-ul{
-  margin-top:-20px;
 }
 
 /*trailnotes form*/
@@ -233,9 +227,8 @@ nav, h1, h3, p {
 }
 
 .notes-div {
-  border: 1px solid blue;
   float: right;
-  width: 20%;
+  width: 18%;
 }
 
 footer{
@@ -249,12 +242,166 @@ footer{
 
 
 
-
+/*.trails-div, .notes-div {
+  background-color: #eee;
+  border-radius: 1em;
+}*/
 li {
   list-style: none;
   padding: 0;
   margin: 1%;
+  font-size: 1.2em;
+}
+button {
+  font-size: 1.2em;
+}
+.trails-ul, .favorites-ul, .notes-ul, .trailinfo-ul {
+  padding: 0;
+}
+.trails-ul, .favorites-ul {
+  margin: 10% 0 25%;
 }
 .trails-ul li, .favorites-ul li {
-  cursor: pointer;  
+  cursor: pointer;
+  text-align: left;
+  border: 1px solid rgba(0,0,0,0);
+  padding: 4% 2%;
 }
+.trails-ul li:hover, .favorites-ul li:hover {
+  border: 1px solid green;
+  border-radius: .2em;
+  background-color: #fff;
+}
+.notes-ul li {
+  text-align: right;
+  border-bottom: 3px solid #aaa;
+  padding: 5% 0 5% 10%;
+}
+.notes-ul li:nth-child(2n) {
+  text-align: left;
+  padding: 5% 10% 5% 0;
+}
+.profile-container h3 {
+  text-align: center;
+  font-size: 1.8em;
+}
+#create-trail-form-div {
+  margin-top: 3%;
+}
+.profile-page-map {
+  background-color: #fff;
+}
+.add-notes-form textarea {
+  width: 100%;
+  height: 5em;
+  border: 1px solid green;
+  border-radius: .3em;
+  padding: 2%;
+  font-size: 1em;
+}
+.add-notes-form textarea:hover {
+  border-radius: .5em;
+}
+.create-note-button, .create-trail-form-button, .create-trail-button, .clear-fields-button {
+  height: 1.5em;
+  background-color: #6EE86E;
+  border: 1px solid #0e700e;
+  margin: 0 auto;
+  color: #555;
+  cursor: pointer;
+  border-radius: .3em;
+  display: block;
+}
+.create-note-button {
+  margin: 8% auto 0;
+}
+.create-trail-form-button {
+  margin: 0 auto 4%;
+}
+.create-note-button:hover, .create-trail-form-button:hover {
+  color: #000;
+  border-radius: .5em;
+}
+#create-trail-form {
+  width: 80%;
+  margin: 0 auto;
+}
+.create-trail-button, .clear-fields-button {
+  display: inline-block;
+}
+.create-trail-button {
+  margin: 4% auto;
+  width: 40%;
+}
+.clear-fields-button {
+  float: right;
+  margin: -8.5% 10% 0 0;
+  width: 35%;
+}
+.create-trail-title, .create-trail-state, .create-trail-description {
+  border: 1px solid green;
+  border-radius: .3em;
+  padding: 2%;
+  font-size: 1em;  
+}
+.create-trail-title, .create-trail-state {
+  margin: 0 0 4%;
+  width: 44%;
+}
+.create-trail-title {
+  float: left;
+}
+.create-trail-state {
+  float: right;
+}
+.create-trail-description {
+  width: 95%;
+  display: block;
+  margin: 3% auto 0;
+}
+
+@media(max-width: 900px) {
+  .clear-fields-button {
+    float: right;
+    margin: -11% 10% 0 0;
+  }  
+}
+@media(max-width: 700px) {
+  .clear-fields-button {
+    float: right;
+    margin: -13% 10% 0 0;
+  }  
+}
+@media(max-width: 600px) {
+  .clear-fields-button {
+    float: right;
+    margin: -14.5% 10% 0 0;
+  }
+  .profile-container {
+    margin: 0;
+    padding: 0;
+  }
+  .map-border-div, .notes-div, .trails-div {
+    display: block;
+    float: none;
+    width: 100%;
+    border: none;
+    margin-bottom: 5%;
+  }
+  .trails-ul, .favorites-ul {
+    margin: 10% 0;
+  }
+}
+@media(max-width: 500px) {
+  .clear-fields-button {
+    float: right;
+    margin: -10.5% 10% 0 0;
+  }
+}
+@media(max-width: 400px) {
+  .clear-fields-button {
+    float: right;
+    margin: -12.5% 10% 0 0;
+  }  
+}
+

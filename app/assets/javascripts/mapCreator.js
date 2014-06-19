@@ -126,6 +126,9 @@ function liClick(){
     $('.add-notes-form').show();
     $('#create-trail-form-div').hide()
 
+    $("#map-trail").css("opacity", "1");
+    $(".trail").css("border", "1px solid rgba(0,0,0,0)").css("border-radius", ".2em").css("background-color", "#eee");
+    $(this).css("border", "1px solid #0e700e").css("border-radius", ".2em").css("background-color", "#fff");
 
     var myTrail = $(this).data('coords');
     var trailTitle = $(this).data('title');
@@ -133,9 +136,9 @@ function liClick(){
     var trailDescription = $(this).data('description');
     var trailId = $(this).data('trail-id');
 
-    $('.trailinfo-ul').append("<li><b>Title:</b>"+trailTitle+"</li>")
-    $('.trailinfo-ul').append("<li><b>State:</b>"+trailState+"</li>")
-    $('.trailinfo-ul').append("<li><b>Description:</b>"+trailDescription+"</li>")
+    $('.trailinfo-ul').append("<li><b>Title: </b>"+trailTitle+"</li>")
+    $('.trailinfo-ul').append("<li><b>State: </b>"+trailState+"</li>")
+    $('.trailinfo-ul').append("<li><b>Description: </b>"+trailDescription+"</li>")
     $('.trailinfo-ul').attr('data-trail-id', trailId)
 
     clearMap()
@@ -214,10 +217,10 @@ function clearFields(){
 }
 
 function trailFormClick(){
-  $('.create-trail-button').on('click', function(){
+  $('.create-trail-form-button').on('click', function(){
       setTrailDrawing()
       newTrailCoords = []
-     $('.add-notes-here').hide();
+     // $('.add-notes-here').hide();
      $('.add-notes-form').hide();
      clearMap()
     $('#create-trail-form-div').show()
