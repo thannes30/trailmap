@@ -1,34 +1,23 @@
-html{
+html, body {
   height: 100%;
   width: 100%;
 }
-
-body {
-  height: 100%;
-  width:100%;
-  margin: 0;
-  background-color: #eee;
-  font-family: 'Ubuntu', sans-serif;
+* {
+  color: #444;
 }
-
-nav {
-  width: 100%;
-  height: 45px;
-  background-color: green;
-  color: white;
-  font-family: helvetica;
-}
-
-nav, h1, h3, p {
+body, nav, h1, h3, p {
   margin: 0;
   padding: 0;
 }
-
-.favorite{
+body {
+  background-color: #eee;
+  font-family: 'Ubuntu', sans-serif;
+  padding-bottom: 5%;
+}
+.favorite {
   text-align: center;
 }
-
-.background{
+.background {
   width: 100%;
   height: 100%;
   position: fixed;
@@ -36,25 +25,106 @@ nav, h1, h3, p {
   opacity: .5;
   z-index: 1;
 }
-
+nav {
+  height: 12%;
+  background-color: green;
+  color: white;
+}
 .title{
   float:left;
-  margin-top: 8px;
-  display: inline-block;
-  padding-left:12%;
+  margin-left: 12%;
+  font-size: 2.5em;
+  padding: 1% 0;
 }
-
-.title a {
+.not_logged_in {
+  float: right;
+  padding: 2% 0;
+  margin-right: 12%;
+}
+a {
   text-decoration: none;
+  color: #fff;
+}
+.login {
+  float: left;
+  padding: 0;
+}
+.loginform {
+  width: 30em;
+}
+h3 {
+  color: #fff;
+  cursor: pointer;
+}
+.loginform input {
+  height: 1.9em;
+  border: none;
+  width: 30%;
+  padding: 0 2%;
+  font-size: 1em;
+}
+#username {
+  border-radius: 5px 0 0 5px;
+}
+#password {
+  border-radius: 0 5px 5px 0;
+}
+.loginform .submitButton {
+  width: 18%;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.signup {
+  float: right;
+  font-size: 1.3em;
+  padding-left: .5em;
+  border-left: 3px solid #fff;
+}
+.login-button {
+  font-size: 1.5em;
+  padding-right: .5em;
 }
 
-.title a:visited {
-  color: white;
+.signup-container {
+  z-index: 2;
+  width: 40%;
+  padding: 0 2% 2%;
+  position: fixed;
+  background-color: #fff;
+  top: 50%;
+  left: 50%;
+  margin-top: -20%;
+  margin-left: -250px;
+  opacity: 1;
+  border-radius: 5px;
+}
+.signup-container h1 {
+  margin-bottom: 5%;
+}
+
+.close-signup {
+  background-color: #eee;
+  width: 3%;
+  height: 3%;
+  padding: 0 1% 0%;
+  font-size: 1.5em;
+  float: right;
+  margin: 4% 0;
+  cursor: pointer;
+}
+
+#main-map{
+  position:absolute;
+  left:12%;
+  right:12%;
+  height:70%;
+  width:76%;
+  border:solid black 1px;
 }
 
 .logged_in {
   padding-top: 10px;
-  margin-right:12%;
+  margin-right: 12%;
 }
 
 .logged_in_as {
@@ -86,119 +156,38 @@ nav, h1, h3, p {
   color: white;
 }
 
-.login {
-  float: right;
-  margin-top: 7px;
-}
 
-.loginform {
-  margin-left: 10px;
-}
+/*After Aziz took over*/
 
-#username {
-  border: solid black 1px;
-  margin: 0;
-  padding: 0;
-  height: 20px;
-  padding-left: 5px;
-  padding-right: 3px;
-  border-radius: 10px;
-  width: 140px;
-}
 
-#password {
-  border: solid black 1px;
-  margin: 0;
-  padding: 0;
-  height: 20px;
-  padding-left: 5px;
-  padding-right: 3px;
-  border-radius: 10px;
+main h1 {
+  text-align: center;
+  margin: 3% auto;
 }
-.submitButton {
-  border: solid black 1px;
-  background-color: white;
-  color: black;
-  font-family: helvetica;
-  padding-top: 4px;
-  font-weight: 600;
-    margin: 0;
-  padding: 0;
-  height: 22px;
-  padding-left: 4px;
-  padding-right: 5px;
-  border-radius: 10px;
+#main-map button {
+  height: 1.5em;
+  background-color: #0e700e;
+  border: none;
+  display: block;
+  margin: 3% 40%;
+  padding: 0 8%;
+  color: #fff;
+  cursor: pointer;
+  border-radius: .3em;
 }
-
-.signup {
-  float: right;
-  margin-top: 7px;
-  margin-left: 10px;
-  border-left: solid white 2px;
-  padding-left: 10px;
-  margin-right: 10px;
+.profile-container {
+  width: 85%;
+  margin: 3% auto;
+  /*height: 600px;*/
 }
-
-.signup-container {
-  z-index: 2;
-  width: 500px;
-  height: 300px;
-  position: fixed;
-  border: solid black 1px;
-  background-color: white;
-  top: 50%;
-  left: 50%;
-  margin-top: -150px;
-  margin-left: -250px;
-  opacity: 1;
-  border-radius: 5px;
-}
-
-.close-signup {
-  font-family: opensans;
-  background-color: lightgrey;
-  width:10px;
-  height:12px;
-  padding: 2px;
-  padding-right: 1px;
-  line-height: 0.7;
-  float: right;
-  margin: 3px;
-  border-radius: 2px;
-}
-
-/*index page map*/
-#main-map{
-  position:absolute;
-  left:12%;
-  right:12%;
-  height:70%;
-  width:76%;
-  border:solid black 1px;
-}
-
-/*profile page container*/
-.profile-container{
-  width:76%;
-  position:absolute;
-  left:12%;
-  right:12%;
-  height:600px;
-  margin-top:3%;
-}
-
 #map-trail {
   height: 30em;
-  /*width: inherit;*/
   margin: 3% auto;
   opacity: .6;
 }
-
 #map-trail:hover {
   opacity: 1;
 }
-
-/*left div of trails in container*/
 .trails-div{
   float: left;
   width: 18%;
@@ -207,46 +196,18 @@ nav, h1, h3, p {
   overflow: scroll;
 }
 .map-border-div {
-  padding: 0 2%;
-  border-left: 5px solid #0e700e;
-  border-right: 5px solid #0e700e;
+  padding: 0;
+  border-left: 2px solid #0e700e;
+  border-right: 2px solid #0e700e;
   width: 55%;
   margin: 0 auto;
 }
-
-.trailinfo {
-  /*border: 1px solid red;*/
-}
-.trailinfo h4 {
-  margin: 0 auto;
-}
-
-/*trailnotes form*/
-.trailnotes{
-  position:absolute;
-  bottom:0;
-}
-
 .notes-div {
   float: right;
   width: 18%;
 }
 
-footer{
-  width: 100%;
-  height: 30px;
-  position: absolute;
-  bottom: 0;
-  margin-top:20px;
-  background-color: green;
-}
 
-
-
-/*.trails-div, .notes-div {
-  background-color: #eee;
-  border-radius: 1em;
-}*/
 li {
   list-style: none;
   padding: 0;
@@ -297,7 +258,7 @@ button {
   height: 5em;
   border: 1px solid green;
   border-radius: .3em;
-  padding: 2%;
+  /* padding: 2%; */
   font-size: 1em;
 }
 .add-notes-form textarea:hover {
@@ -305,10 +266,10 @@ button {
 }
 .create-note-button, .create-trail-form-button, .create-trail-button, .clear-fields-button {
   height: 1.5em;
-  background-color: #6EE86E;
-  border: 1px solid #0e700e;
+  background-color: #0e700e;
+  border: none;
   margin: 0 auto;
-  color: #555;
+  color: #fff;
   cursor: pointer;
   border-radius: .3em;
   display: block;
@@ -320,7 +281,6 @@ button {
   margin: 0 auto 4%;
 }
 .create-note-button:hover, .create-trail-form-button:hover {
-  color: #000;
   border-radius: .5em;
 }
 #create-trail-form {
@@ -361,7 +321,11 @@ button {
   margin: 3% auto 0;
 }
 
+
 @media(max-width: 900px) {
+  .profile-container {
+  width: 90%;
+  }
   .clear-fields-button {
     float: right;
     margin: -11% 10% 0 0;
@@ -378,16 +342,13 @@ button {
     float: right;
     margin: -14.5% 10% 0 0;
   }
-  .profile-container {
-    margin: 0;
-    padding: 0;
-  }
   .map-border-div, .notes-div, .trails-div {
     display: block;
     float: none;
     width: 100%;
     border: none;
     margin-bottom: 5%;
+    padding: 0;
   }
   .trails-ul, .favorites-ul {
     margin: 10% 0;

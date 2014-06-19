@@ -1,13 +1,13 @@
 <main>
-<h1>
-  Welcome to Trailmap <%= current_user ? current_user.username : '!' %>
-</h1>
 
-<div id="main-map"></div>
+  <h1>
+    Welcome to Trailmap <%= current_user ? current_user.username : '!' %>
+  </h1>
 
-<% content_for :custom_javascript do %>
-  <%= javascript_include_tag 'trailsViewer'%>
-<% end %>
+  <div id="main-map"></div>
 
-<footer></footer>
+  <% content_for :custom_javascript do %>
+    <%= javascript_include_tag 'trailsViewer'%>
+  <% end %>
+
 </main>
