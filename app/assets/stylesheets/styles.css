@@ -26,12 +26,12 @@ body {
   z-index: 1;
 }
 nav {
-  height: 12%;
+  min-height: 12%;
   background-color: green;
   color: white;
 }
-.title{
-  float:left;
+.title {
+  float: left;
   margin-left: 12%;
   font-size: 2.5em;
   padding: 1% 0;
@@ -59,7 +59,7 @@ h3 {
 .loginform input {
   height: 1.9em;
   border: none;
-  width: 30%;
+  width: 25%;
   padding: 0 2%;
   font-size: 1em;
 }
@@ -101,6 +101,29 @@ h3 {
 .signup-container h1 {
   margin-bottom: 5%;
 }
+/* .new_user {
+  padding-right: 1.4%;
+} */
+.new_user input {
+  height: 2em;
+  width: 57%;
+  border: 1px solid #0e700e;
+  border-radius: .3em;
+  margin: 3% 0;
+  padding: 1%;
+  font-size: .7em;
+}
+.new_user input[type="submit"] {
+  height: 3em;
+  width: 20%;
+  background-color: #0e700e;
+  border: none;
+  margin: 5% auto 0;
+  padding: 0;
+  color: #fff;
+  cursor: pointer;
+  border-radius: .3em;
+}
 
 .close-signup {
   background-color: #eee;
@@ -114,12 +137,11 @@ h3 {
 }
 
 #main-map{
-  position:absolute;
-  left:12%;
-  right:12%;
-  height:70%;
-  width:76%;
-  border:solid black 1px;
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  height: 70%;
+  width: 76%;
 }
 
 .logged_in {
@@ -190,7 +212,7 @@ main h1 {
 }
 .trails-div{
   float: left;
-  width: 18%;
+  width: 21%;
   display: inline-block;
   /*height: 600px;*/
   overflow: scroll;
@@ -204,7 +226,7 @@ main h1 {
 }
 .notes-div {
   float: right;
-  width: 18%;
+  width: 21%;
 }
 
 
@@ -359,6 +381,30 @@ button {
   .clear-fields-button {
     float: right;
     margin: -10.5% 10% 0 0;
+  }
+  nav {
+    min-height: 15%;
+  }
+  .not_logged_in {
+    float: none;
+    margin: 0 auto;
+    width: 50%;
+  }
+  .login, .signup {
+    display: inline-block;
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+  .title {
+    font-size: 200%;
+    display: block;
+    float: none;
+    text-align: center;
+    margin: 0;
+  }
+  main h1 {
+    font-size: 150%;
   }
 }
 @media(max-width: 400px) {
