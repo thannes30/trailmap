@@ -1,28 +1,23 @@
 html, body {
   height: 100%;
   width: 100%;
+  position: relative;
+  min-height: 100%;
+  background-color: lightgrey;
 }
-/** {
-  color: #444;
-}*/
 body, nav, h1, h3, p {
   margin: 0;
   padding: 0;
 }
 body {
-/*  background-color: #eee;
-*/  font-family: sans-serif;
+  font-family: 'futura';
   padding-bottom: 5%;
+  margin: 0 0 50px;
 }
-/*.favorite {
-  text-align: center;
-}*/
 .background {
   width: 100%;
   height: 100%;
   position: fixed;
-/*  background-color: grey;
-  opacity: .5;*/
   z-index: 1;
 }
 nav {
@@ -37,10 +32,9 @@ nav {
 .title {
   float: left;
   margin-left: 12%;
-  padding-top: 17px;
+  padding-top: 15px;
   font-size: 2.2em;
-/*  padding: 1% 0;
-*/}
+}
 .not_logged_in {
   font-size:.8em;
   float: right;
@@ -54,6 +48,7 @@ a {
 .login {
   float: left;
   padding: 0;
+  font-size: 1em;
 }
 .loginform {
   width: 30em;
@@ -70,40 +65,42 @@ h3 {
   font-size: 1em;
 }
 #username {
-  border-radius: 5px 0 0 5px;
+  border-radius: 1px;
 }
 #password {
-  border-radius: 0 5px 5px 0;
+  border-radius: 1px;
 }
 .loginform .submitButton {
   width: 18%;
-  border-radius: 3px;
+  border-radius: 1px;
   cursor: pointer;
 }
 .signup {
   float: right;
-  font-size: 1.3em;
+  font-size: 1em;
   padding-left: .5em;
   border-left: 3px solid #fff;
 }
 .login-button {
-  font-size: 1.5em;
+  font-size: 1.2em;
   padding-right: .5em;
 }
 
 .signup-container {
+  text-align: center;
   z-index: 2;
-  width: 40%;
-  padding: 0 2% 2%;
-  position: fixed;
+  width: 25%;
+  min-width: 150px;
+/*  padding: 0 2% 2%;
+*/  position: fixed;
   background-color: #fff;
-  top: 50%;
-  left: 50%;
-  margin-top: -20%;
-  margin-left: -250px;
-  opacity: 1;
-  border-radius: 5px;
-}
+  top: 32%;
+  left: 35%;
+  border: 3px solid white;
+  padding: 0 1% 1% 0;
+/*  opacity: 1;
+/**/  border-radius: 5px;
+*/}
 .signup-container h1 {
   margin-bottom: 5%;
 }
@@ -183,7 +180,6 @@ h3 {
 .logout a {
   text-decoration: none;
 }
-
 /*.signed-in-as{
   text-align:center;
   margin-top: -30px;
@@ -195,11 +191,11 @@ h3 {
 }
 
 footer{
-  height: 25px;
+  position:absolute;
+  height: 40px;
   width: 100%;
   background-color:green;
   opacity: .9;
-  position:absolute;
   bottom: 0;
   left: 0;
 }
@@ -241,8 +237,6 @@ main h1 {
   float: left;
   width: 21%;
   display: inline-block;
-  /*height: 600px;*/
-  overflow: scroll;
 }
 .map-border-div {
   padding: 0;
@@ -404,7 +398,7 @@ button {
     margin: 10% 0;
   }
 }
-@media(max-width: 500px) {
+@media(max-width: 100px) {
   .clear-fields-button {
     float: right;
     margin: -10.5% 10% 0 0;

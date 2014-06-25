@@ -1,19 +1,20 @@
 <main>
+  <div class="wrap">
+    <h1>
+      Welcome to Trailmap
+    </h1>
 
-  <h1>
-    Welcome to Trailmap
-  </h1>
+   <!--  <p class="signed-in-as">
+      You are signed in as  <%= current_user ? current_user.username : '!' %>.
+    </p> -->
 
- <!--  <p class="signed-in-as">
-    You are signed in as  <%= current_user ? current_user.username : '!' %>.
-  </p> -->
+    <div id="main-map"></div>
 
-  <div id="main-map"></div>
+    <% content_for :custom_javascript do %>
+      <%= javascript_include_tag 'trailsViewer'%>
+    <% end %>
+  </div>
 
-  <% content_for :custom_javascript do %>
-    <%= javascript_include_tag 'trailsViewer'%>
-  <% end %>
-
-  <footer></footer>
-
+<!--   <footer></footer>
+ -->
 </main>
